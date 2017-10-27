@@ -3,4 +3,5 @@ public class Plan {
 
     private int chau;
     private int hey;
+    private int gggg;
 }
