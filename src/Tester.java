@@ -81,7 +81,7 @@ public class Tester {
         cuatrimestresInformatica.add(c5);
         cuatrimestresInformatica.add(c6);
 
-        Carrera informatica=new Carrera("Informática", new Plan(cuatrimestresInformatica));
+
 
 
     }
