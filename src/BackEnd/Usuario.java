@@ -11,19 +11,19 @@ public class Usuario {
         this.carrera=carrera;
     }
 
-    public void setCarrera(Map<String,List<Cuatrimestre>> carrera) {
+    public void setearCarrera(Map<String,List<Cuatrimestre>> carrera) {
         this.carrera = carrera;
     }
 
-    public Map<String,List<Cuatrimestre>> getCarrera() {
+    public Map<String,List<Cuatrimestre>> obtenerCarrera() {
         return carrera;
     }
 
-    public String getNombreItba() {
+    public String obtenerNombreItba() {
         return nombreItba;
     }
 
-    public void setNombreItba(String nombreItba)
+    public void setearNombreItba(String nombreItba)
     {
         this.nombreItba=nombreItba;
     }

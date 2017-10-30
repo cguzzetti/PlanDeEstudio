@@ -10,12 +10,12 @@ public class EstadoDeAplicacion {
         this.usuario=usuario;
     }
 
-    public Usuario getUsuario()
+    public Usuario obtenerUsuario()
     {
         return this.usuario;
     }
 
-    public void setUsuario(Usuario usuario)
+    public void setearUsuario(Usuario usuario)
     {
         this.usuario=usuario;
     }

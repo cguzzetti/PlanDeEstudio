@@ -6,6 +6,8 @@ public class Tester {
     public static void main(String[] args)
     {
         List<Cuatrimestre> cuatrimestresInformatica=new ArrayList<>();
+
+
         Cuatrimestre c1=new Cuatrimestre("C1");
         Cuatrimestre c2=new Cuatrimestre("C2");
         Cuatrimestre c3=new Cuatrimestre("C3");
