@@ -1,0 +1,65 @@
+package BackEnd;
+
+public class Clase {
+    private String dia;
+    private String sede;
+    private int horaInicio;
+    private int horaFin;
+
+
+    public String obtenerDia(){
+        return dia;
+    }
+
+    public String obtenerSede(){
+        return sede;
+    }
+
+    public int obtenerHoraInicio(){
+        return horaInicio;
+    }
+
+    public int obtenerHoraFin(){
+        return horaFin;
+    }
+
+    public Clase(String dia, String sede, int horaInicio, int horaFin){
+        this.dia=dia;
+        this.sede=sede;
+        this.horaInicio=horaInicio;
+        this.horaFin=horaFin;
+    }
+
+    public boolean validaHorario(Clase clase){
+
+        if((dia!=clase.obtenerDia()) ||horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio()) || ((horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede==clase.obtenerSede())
+        return true;    //este if es un choclo pero como dan todos true me paecio feo separarlo. Lo dejo a su gusto
+        return false
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o)
+            return true;
+        if(!(o instanceof Clase))
+            return false;
+        Clase aux = (Clase)o;
+        if (dia == aux.obtenerDia() && sede==aux.obtenerSede() && horaInicio==aux.obtenerHoraInicio() && horaFin==aux/obtenerHoraFin())
+            return false;
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        int resultado=17;
+        resultado= 31*resultado+horaInicio;
+        resultado=31*resultado+horaFin;
+        return resultado;
+    }
+
+    @Override
+    public String toString(){
+        String mensaje= dia+ " de " +horaInicio+ " a " +horaFin+ " hs. en la sede " +sede;
+        return mensaje;
+    }
+}
