@@ -20,7 +20,7 @@ public class Plan {
 		Set<Materia> set = new HashSet<Materia>();
 		for (Iterator<Cuatrimestre> i = carrera.iterator(); i.hasNext(); ) {
 			Cuatrimestre aux = i.next();
-			System.out.println(aux);
+			//System.out.println(aux);
 			set.addAll(aux.obtenerMaterias());
 		}
 
@@ -45,14 +45,13 @@ public class Plan {
 	public void construirPlan(Set<Materia> set) throws NoTimeException {
 
 		for (Entry<Materia, Boolean> materia : materias.entrySet()) {
-			System.out.println(materia.getValue());
+			//System.out.println(materia.getValue());
 			if (! materia.getValue()) {		// si no esta aprobada la materia
 				set.add(materia.getKey());
-				System.out.println(materia.getKey());
 			}
 		}
 
-		System.out.println(set.size());
+
 
 		for (Materia  m : set) {
 			ArrayList<Materia> materiasPorCursar = new ArrayList<>();
@@ -66,6 +65,7 @@ public class Plan {
 				Cuatrimestre ultimoCuatrimestre = cuatrimestres.get(cantidadDeCuatrimestres-1);
 				if (!agregarMateria(m, ultimoCuatrimestre, cantidadDeCuatrimestres)){
 					materiasPorCursar.add(m);
+					//NUNCA ENTRA ACA
 				}
 				for (int j=0; j<materiasPorCursar.size(); j++) {		// me fijo en las materias que me tuve que saltear porque no estaban sus correlativas o se pisaban los horarios
 					if (agregarMateria(materiasPorCursar.get(j), ultimoCuatrimestre, cuatrimestres.size())) {
