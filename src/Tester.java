@@ -16,35 +16,34 @@ public class Tester {
         Cuatrimestre c4=new Cuatrimestre("C4");
         Cuatrimestre c5=new Cuatrimestre("C5");
         Cuatrimestre c6=new Cuatrimestre("C6");*/
-    //.
     //todas las materias son en madero menos dos que indican que son en PP. Hay qeu fijarse bien por clase igual.
     Materia algebra=new Materia("Álgebra",9,c1);
-    algebra.agregarClase(new Clase("Martes",MADERO,9,13));
-    algebra.agregarClase(new Clase("Jueves",MADERO,9,14));
+          algebra.agregarClase(new Clase("Martes",MADERO,9,13));
+          algebra.agregarClase(new Clase("Jueves",MADERO,9,14));
     Materia analisis1=new Materia("Análisis Matemático I",6,c1);
-    analisis1.agregarClase(new Clase("Miercoles",MADERO,8,11));
-    analisis1.agregarClase(new Clase("Viernes",MADERO,8,11));
+          analisis1.agregarClase(new Clase("Miercoles",MADERO,8,11));
+          analisis1.agregarClase(new Clase("Viernes",MADERO,8,11));
     Materia introInfo=new Materia("Introducción a la Informática",3,c1);
-    introInfo.agregarClase(new Clase("Lunes",MADERO,8,11));
+          introInfo.agregarClase(new Clase("Lunes",MADERO,8,11));
     Materia metodologia=new Materia("Metodología del Aprendizaje",3,c1);
-    metodologia.agregarClase(new Clase("Lunes",MADERO,14,17));
+          metodologia.agregarClase(new Clase("Lunes",MADERO,14,17));
     Materia sistemasDeRep=new Materia("Sistemas de Representación",3,c1);
-    sistemasDeRep.agregarClase(new Clase("Miércoles",MADERO,14,17));
+          sistemasDeRep.agregarClase(new Clase("Miércoles",MADERO,14,17));
     Materia analisis2=new Materia("Análisis Matemático II",6,c2);
-    analisis1.agregarClase(new Clase("Lunes",MADERO,12,14));
-    analisis1.agregarClase(new Clase("Martes",MADERO,11,13));
-    analisis1.agregarClase(new Clase("Jueves",MADERO,13,15));
+          analisis1.agregarClase(new Clase("Lunes",MADERO,12,14));
+          analisis1.agregarClase(new Clase("Martes",MADERO,11,13));
+          analisis1.agregarClase(new Clase("Jueves",MADERO,13,15));
     Materia fisica1=new Materia("Física I",6,c2);
-    fisica1.agregarClase(new Clase("Martes",MADERO,8,10));
-    fisica1.agregarClase(new Clase("Jueves",MADERO,11,13));
-    fisica1.agregarClase(new Clase("Viernes",MADERO,8,10));
+          fisica1.agregarClase(new Clase("Martes",MADERO,8,10));
+          fisica1.agregarClase(new Clase("Jueves",MADERO,11,13));
+          fisica1.agregarClase(new Clase("Viernes",MADERO,8,10));
     Materia mateDiscreta=new Materia("Matemática Discreta",6,c2);
-    mateDiscreta.agregarClase(new Clase("Lunes",MADERO,8,11));
-    mateDiscreta.agregarClase(new Clase("Jueves",MADERO,8,11));
+          mateDiscreta.agregarClase(new Clase("Lunes",MADERO,8,11));
+          mateDiscreta.agregarClase(new Clase("Jueves",MADERO,8,11));
     Materia pi=new Materia("Programación Imperativa",9,c2);
-    pi.agregarClase(new Clase("Martes",MADERO,13,17));
-    pi.agregarClase(new Clase("Miércoles",MADERO,10,13));
-    pi.agregarClase(new Clase("Viernes",MADERO,10,12));
+          pi.agregarClase(new Clase("Martes",MADERO,13,17));
+          pi.agregarClase(new Clase("Miércoles",MADERO,10,13));
+          pi.agregarClase(new Clase("Viernes",MADERO,10,12));
         /*Materia xml=new Materia("Diseño y Porcesamiento de Documentos XML",3,c3);//
         Materia fisica2=new Materia("Física II",6,c3);//Lunes 13:00 - 15:00, Martes 17:00 - 19:00, Miércoles 13:00 - 15:00
         Materia poo=new Materia("Programación Orientada a Objetos",6,c3);//Lunes 16:00 - 18:00, Viernes 16:00 - 20:00
@@ -95,7 +94,7 @@ public class Tester {
         automatas.agregarCorrelativa(eda);
         protos.agregarCorrelativa(sistemasOperativos);
         metodosNumericos.agregarCorrelativa(analisis2);*/
-
+/*
     c1.agregarMateria(analisis1);
     c1.agregarMateria(algebra);
     c1.agregarMateria(sistemasDeRep);
@@ -105,7 +104,7 @@ public class Tester {
     c2.agregarMateria(pi);
     c2.agregarMateria(fisica1);
     c2.agregarMateria(mateDiscreta);
-
+*/
     cuatrimestresInformatica.add(c1);
     cuatrimestresInformatica.add(c2);
         /*cuatrimestresInformatica.add(c3);

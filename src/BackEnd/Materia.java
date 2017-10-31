@@ -18,7 +18,11 @@ public class Materia {
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
 
-        //cuatrimestre.agregarMateria(this);
+        try {
+            cuatrimestre.agregarMateria(this);
+        } catch (NoTimeException e) {
+            e.printStackTrace();
+        }
     }
 
     public void agregarClase(Clase clase) throws NoTimeException {
