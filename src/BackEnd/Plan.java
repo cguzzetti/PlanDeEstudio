@@ -59,13 +59,14 @@ public class Plan {
 				Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
 				nuevoCuatri.agregarMateria(m);
 				cuatrimestres.add(nuevoCuatri);
-			}
+                System.out.println("PRIMER CUATRIMESTRE QUE CONSTRUYE");
+            }
 			else {
 				int cantidadDeCuatrimestres = cuatrimestres.size();
 				Cuatrimestre ultimoCuatrimestre = cuatrimestres.get(cantidadDeCuatrimestres-1);
 				if (!agregarMateria(m, ultimoCuatrimestre, cantidadDeCuatrimestres)){
 					materiasPorCursar.add(m);
-					//NUNCA ENTRA ACA
+					//NUNCA ENTRA ACA!!!!!!!!!
 				}
 				for (int j=0; j<materiasPorCursar.size(); j++) {		// me fijo en las materias que me tuve que saltear porque no estaban sus correlativas o se pisaban los horarios
 					if (agregarMateria(materiasPorCursar.get(j), ultimoCuatrimestre, cuatrimestres.size())) {
