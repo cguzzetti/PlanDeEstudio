@@ -1,3 +1,5 @@
+import BackEnd.Cuatrimestre;
+
 import java.util.*;
 
 import java.util.Map.Entry;
@@ -5,15 +7,15 @@ import java.util.Map.Entry;
 public class Plan {
 	
 	private int creditos;
-	private ArrayList<Cuatrimestre> cuatrimestres;
-	private ArrayList<Cuatrimestre> carrera;
-	private Map<Materia, Boolean> materias = new HashMap<>();
+	private List<Cuatrimestre> cuatrimestres;
+	private List<Cuatrimestre> carrera;
+	private Map<Materia, Boolean> materias;
 	
 	public Plan (int creditos, ArrayList<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
 		this.materias = new HashMap<>();
 		this.cuatrimestres = new ArrayList<>();
 		this.creditos = creditos;
-		this.carrera=carrera;
+		this.carrera=new ArrayList<>(carrera);
 		
 		Set<Materia> set = new HashSet<Materia>();
 		for (Iterator<Cuatrimestre> i = carrera.iterator(); i.hasNext(); ) {
@@ -31,7 +33,7 @@ public class Plan {
 		return creditos;
 	}
 	
-	public ArrayList<Cuatrimestre> obtenerCuatrimestres(){
+	public List<Cuatrimestre> obtenerCuatrimestres(){
 		return cuatrimestres;
 	}
 	
@@ -39,7 +41,7 @@ public class Plan {
 		return materias;
 	}
 	
-	public void construirPlan(TreeSet<Materia> set) {
+	public void construirPlan(Set<Materia> set) {
 		
 		for (Iterator<Entry<Materia, Boolean>> i = materias.entrySet().iterator(); i.hasNext(); ) {
 			Entry<Materia, Boolean> aux = i.next();
