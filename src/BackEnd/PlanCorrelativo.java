@@ -3,17 +3,17 @@ package BackEnd;
 import java.util.*;
 
 public class PlanCorrelativo extends Plan {
-	
+
 	public PlanCorrelativo (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
-		super(creditos, carrera/*, materiasAprobadas*/);
+		super(creditos, carrera, materiasAprobadas);
 	}
 
-	public void agregarMaterias() {
-		
-		TreeSet<Materia> set = new TreeSet<Materia>( new Comparator<Materia>() {
+	public void construirPlan() throws  NoTimeException{
+
+		TreeSet<Materia> set = new TreeSet<>( new Comparator<Materia>() {
 			@Override
 			public int compare (Materia m1, Materia m2) {
-				
+
 				int prioridad = m1.obtenerPrioridad() - m2.obtenerPrioridad();
 				if (prioridad == 0) {
 					if (m1.sonCorrelativas(m2))
@@ -23,8 +23,8 @@ public class PlanCorrelativo extends Plan {
 				return prioridad;
 			}
 		});
-		
+
 		super.construirPlan(set);
-		
+
 	}
 }

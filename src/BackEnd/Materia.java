@@ -1,6 +1,6 @@
 package BackEnd;
 
-import java.util.Set;
+import java.util.*;
 
 public class Materia {
     private String nombre;
@@ -14,11 +14,18 @@ public class Materia {
         this.nombre=nombre;
         this.creditos=creditos;
         this.cuatrimestre=cuatrimestre;
+        this.prioridadCorrelativas=0;
+        this.correlativas = new HashSet<>();
+        this.clases = new HashSet<>();
 
-        cuatrimestre.agregarMateria(this);
+        //cuatrimestre.agregarMateria(this);
     }
 
-    public void agregarClase(Clase clase){
+    public void agregarClase(Clase clase) throws NoTimeException {
+        for (Clase thisClase: clases){
+            if (! thisClase.validaHorario(clase))
+                throw new NoTimeException();
+        }
         clases.add(clase);
     }
 
@@ -50,7 +57,7 @@ public class Materia {
         //supongo que la validacion de si la materia que se pasa o no es externa. Sino la puedo poner aca
         for(Clase thisClase : clases){
             for(Clase thatClase : materia.obtenerClases()){
-                if(!(thisClase.equals(thatClase)))
+                if(!(thisClase.validaHorario(thatClase)))
                     return false;
             }
         }
@@ -58,15 +65,19 @@ public class Materia {
     }
 
     public void agregarCorrelativa (Materia materia){
-    correlativas.add(materia);
-    materia.incrementarPuntaje();
+        correlativas.add(materia);
+        materia.incrementarPrioridad(prioridadCorrelativas);
     }
 
-    private void incrementarPuntaje(){       //aunque la materia no tenga correlativas hay que llamar a este medtodo para que la prioridad se setee en 1
-        for(Materia materia:correlativas){
-            materia.incrementarPuntaje();
+    public void incrementarPrioridad(int prioridad){       //aunque la materia no tenga correlativas hay que llamar a este medtodo para que la prioridad se setee en 1
+        prioridadCorrelativas += (prioridad + 1);
+        for (Materia thisMateria: correlativas) {
+            thisMateria.incrementarPrioridad(prioridad);
         }
-        prioridadCorrelativas++;
+    }
+
+    public boolean sonCorrelativas (Materia m){
+        return correlativas.contains(m);
     }
 
     @Override
@@ -91,6 +102,7 @@ public class Materia {
 
     @Override
     public String toString(){
+        System.out.println("Hola");
         String mensaje="Materia: " +nombre+ "\n Creditos: " +creditos;
         for(Clase clase:clases){
             mensaje= mensaje +"\n\t" +clase.toString();

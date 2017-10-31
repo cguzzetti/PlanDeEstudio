@@ -32,7 +32,7 @@ public class Clase {
 
     public boolean validaHorario(Clase clase){
 
-        if((dia!=clase.obtenerDia() || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede.equals(clase.obtenerSede()))
+        if((!dia.equals(clase.obtenerDia()) || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede.equals(clase.obtenerSede()))
             return true;    //este if es un choclo pero como dan todos true me paecio feo separarlo. Lo dejo a su gusto
         return false;
     }
@@ -60,7 +60,7 @@ public class Clase {
 
     @Override
     public String toString(){
-        String mensaje= dia+ " de " +horaInicio+ " a " +horaFin+ " hs. en la sede " +sede;
-        return mensaje;
+        return  dia+ " de " +horaInicio+ " a " +horaFin+ " hs. en la sede " +sede;
+
     }
 }

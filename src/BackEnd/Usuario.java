@@ -2,7 +2,7 @@ package BackEnd;
 
 public class Usuario {
 
-    private String nombreItba;
+   /* private String nombreItba;
     private Map<String,List<Cuatrimestre>> carrera;
 
     public Usuario(String nombreItba,Map<String,List<Cuatrimestre>> carrera)
@@ -56,6 +56,6 @@ public class Usuario {
         result = prime * result + ((nombreItba == null) ? 0 : nombreItba.hashCode());
         result = prime * result + ((carrera == null) ? 0 : carrera.hashCode());
         return result;
-    }
+    }*/
 
 }
