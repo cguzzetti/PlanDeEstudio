@@ -1,12 +1,9 @@
-package BackEnd;
-
 import java.util.*;
-//import java.util.Map.Entry;
 
 public class PlanAcademico extends Plan {
 	
-	public PlanAcademico (int creditos, Set<Materia> materiasTotales, Set<Materia> materiasAprobadas) {
-		super(creditos, materiasTotales, materiasAprobadas);
+	public PlanAcademico (int creditos, ArrayList<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
+		super(creditos, carrera, materiasAprobadas);
 	}
 	
 	public void agregarMaterias() {
@@ -14,10 +11,16 @@ public class PlanAcademico extends Plan {
 		TreeSet<Materia> set = new TreeSet<Materia>( new Comparator<Materia>() {
 			@Override
 			public int compare (Materia m1, Materia m2) {
-				return m1.obtenerCuatrimestre().obtenerNombre().compareTo(m2.obtenerCuatrimestre().obtenerNombre());
+				
+				int prioridad = m1.obtenerCuatrimestre().obtenerNombre().compareTo(m2.obtenerCuatrimestre().obtenerNombre());
+				
+				if (prioridad == 0)
+					return m1.obtenerPrioridad()- m2.obtenerPrioridad();
+				
+				return prioridad;
 			}
 		});
 		
-		super.agregarMaterias(set);
+		super.construirPlan(set);
 	}
 }
