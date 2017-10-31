@@ -1,5 +1,4 @@
-import BackEnd.Clase;
-import BackEnd.Cuatrimestre;
+package BackEnd;
 
 import java.util.Set;
 
@@ -18,7 +17,7 @@ public class Materia {
     }
 
     public void agregarClase(Clase clase){
-        clases.add(Clase clase);
+        clases.add(clase);
     }
 
     public Cuatrimestre obtenerCuatrimestre(){
@@ -75,9 +74,7 @@ public class Materia {
         if(!(o instanceof Materia))
             return false;
         Materia aux= (Materia) o;
-        if(nombre==aux.obtenerNombre() && creditos==aux.obtenerCreditos() && clases==aux.obtenerClases() && correlativas==aux.obtenerCorrelativas() && prioridadCorrelativas==aux.obtenerPrioridad())
-            return true;
-        return false;
+        return nombre.equals(aux.obtenerNombre()) && creditos == aux.obtenerCreditos() && clases == aux.obtenerClases() && correlativas == aux.obtenerCorrelativas() && prioridadCorrelativas == aux.obtenerPrioridad();
     }
 
     @Override
@@ -94,7 +91,7 @@ public class Materia {
     public String toString(){
         String mensaje="Materia: " +nombre+ "\n Creditos: " +creditos;
         for(Clase clase:clases){
-            mensaje+="\n\t" +clase.toString();
+            mensaje= mensaje +"\n\t" +clase.toString();
         }
         return mensaje;
     }
