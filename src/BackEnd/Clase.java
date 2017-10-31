@@ -32,10 +32,11 @@ public class Clase {
 
     public boolean validaHorario(Clase clase){
 
-        if((dia!=clase.obtenerDia()) ||horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio()) || ((horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede==clase.obtenerSede())
-        return true;    //este if es un choclo pero como dan todos true me paecio feo separarlo. Lo dejo a su gusto
-        return false
+        if((dia!=clase.obtenerDia() || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede.equals(clase.obtenerSede()))
+            return true;    //este if es un choclo pero como dan todos true me paecio feo separarlo. Lo dejo a su gusto
+        return false;
     }
+
 
     @Override
     public boolean equals(Object o){
