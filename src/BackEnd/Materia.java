@@ -14,6 +14,8 @@ public class Materia {
         this.nombre=nombre;
         this.creditos=creditos;
         this.cuatrimestre=cuatrimestre;
+
+        cuatrimestre.agregarMateria(this);
     }
 
     public void agregarClase(Clase clase){

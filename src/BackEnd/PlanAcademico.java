@@ -4,8 +4,8 @@ import java.util.*;
 
 public class PlanAcademico extends Plan {
 	
-	public PlanAcademico (int creditos, ArrayList<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
-		super(creditos, carrera, materiasAprobadas);
+	public PlanAcademico (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
+		super(creditos, carrera/*, materiasAprobadas*/);
 	}
 	
 	public void agregarMaterias() {

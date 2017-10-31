@@ -21,7 +21,7 @@ public class Tester {
         Cuatrimestre c4=new Cuatrimestre("C4");
         Cuatrimestre c5=new Cuatrimestre("C5");
         Cuatrimestre c6=new Cuatrimestre("C6");
-
+        //.
         //todas las materias son en madero menos dos que indican que son en PP. Hay qeu fijarse bien por clase igual.
         Materia algebra=new Materia("Álgebra",9,c1);
         algebra.agregarClase(new Clase("Martes",MADERO,9,13));
@@ -40,9 +40,9 @@ public class Tester {
         analisis1.agregarClase(new Clase("Martes",MADERO,11,13));
         analisis1.agregarClase(new Clase("Jueves",MADERO,13,15));
         Materia fisica1=new Materia("Física I",6,c2);
-        fisica1.agregarClase("Martes",MADERO,8,10);
-        fisica1.agregarClase("Jueves",MADERO,11,13);
-        fisica1.agregarClase("Viernes",MADERO,8,10);
+        fisica1.agregarClase(new Clase("Martes",MADERO,8,10));
+        fisica1.agregarClase(new Clase("Jueves",MADERO,11,13));
+        fisica1.agregarClase(new Clase("Viernes",MADERO,8,10));
         Materia mateDiscreta=new Materia("Matemática Discreta",6,c2);
         mateDiscreta.agregarClase(new Clase("Lunes",MADERO,8,11));
         mateDiscreta.agregarClase(new Clase("Jueves",MADERO,8,11));
@@ -108,7 +108,7 @@ public class Tester {
         cuatrimestresInformatica.add(c5);
         cuatrimestresInformatica.add(c6);
 
-        Plan plan=
+        Plan plan=new Plan(27,cuatrimestresInformatica);
 
 
 

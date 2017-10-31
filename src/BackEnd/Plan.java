@@ -11,7 +11,7 @@ public class Plan {
 	private List<Cuatrimestre> carrera;
 	private Map<Materia, Boolean> materias;
 	
-	public Plan (int creditos, ArrayList<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
+	public Plan (int creditos, List<Cuatrimestre> carrera/*, Set<Materia> materiasAprobadas*/) {
 		this.materias = new HashMap<>();
 		this.cuatrimestres = new ArrayList<>();
 		this.creditos = creditos;
