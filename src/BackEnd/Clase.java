@@ -44,7 +44,7 @@ public class Clase {
         if(!(o instanceof Clase))
             return false;
         Clase aux = (Clase)o;
-        if (dia == aux.obtenerDia() && sede==aux.obtenerSede() && horaInicio==aux.obtenerHoraInicio() && horaFin==aux/obtenerHoraFin())
+        if (dia.equals(aux.obtenerDia()) && sede.equals(aux.obtenerSede()) && horaInicio==(aux.obtenerHoraInicio()) && horaFin==(aux.obtenerHoraFin()))
             return false;
         return false;
     }
