@@ -39,17 +39,6 @@ public class Cuatrimestre {
 		return materias;
 	}
 
-	/*public boolean hayCorrelativa(Materia m){
-		Iterator<Materia> i = materias.iterator();
-		while(i.hasNext()){
-			Materia aux = i.next();
-			if(m.sonCorrelativas(aux)){
-				return true;
-			}
-		}
-		return false;
-	}*/
-
 	public boolean hayCreditos(Materia m, int creditosPorCuatrimestre) {
 		return (m.obtenerCreditos() + creditos) <= creditosPorCuatrimestre;
 	}
@@ -72,9 +61,9 @@ public class Cuatrimestre {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(nombre);
+		sb.append(nombre).append("\n");
 		for ( Materia m : materias) {
-			sb.append(m);
+			sb.append(m).append("\n");
 		}
 		return sb.toString();
 	}

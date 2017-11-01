@@ -1,5 +1,3 @@
-package BackEnd;
-
 import java.util.*;
 
 public class Materia {
@@ -106,7 +104,6 @@ public class Materia {
 
     @Override
     public String toString(){
-        System.out.println("Hola");
         String mensaje="Materia: " +nombre+ "\n Creditos: " +creditos;
         for(Clase clase:clases){
             mensaje= mensaje +"\n\t" +clase.toString();
@@ -114,4 +111,5 @@ public class Materia {
         return mensaje;
     }
 }
+
 

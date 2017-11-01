@@ -1,5 +1,3 @@
-package BackEnd;
-
 import java.util.*;
 
 import java.util.Map.Entry;
@@ -20,14 +18,14 @@ public class Plan {
 		Set<Materia> set = new HashSet<Materia>();
 		for (Iterator<Cuatrimestre> i = carrera.iterator(); i.hasNext(); ) {
 			Cuatrimestre aux = i.next();
-			//System.out.println(aux);
 			set.addAll(aux.obtenerMaterias());
 		}
-
-		for (Iterator<Materia> i = set.iterator(); i.hasNext(); ) {
-			Materia aux = i.next();
-			materias.put(aux, set.contains(aux));
+		
+		for (Materia aux : set ) {
+			materias.put(aux, materiasAprobadas.contains(aux));
 		}
+		
+		//EL CONSTRUCTOR ANDA
 	}
 
 	public int obtenerCreditos () {
@@ -42,45 +40,44 @@ public class Plan {
 		return materias;
 	}
 
-	public void construirPlan(Set<Materia> set) throws NoTimeException {
-
-		for (Entry<Materia, Boolean> materia : materias.entrySet()) {
-			//System.out.println(materia.getValue());
-			if (! materia.getValue()) {		// si no esta aprobada la materia
-				set.add(materia.getKey());
+	public void construirPlan(TreeSet<Materia> set) throws NoTimeException {
+		
+		for (Materia materia : materias.keySet()) {
+			if (! materias.get(materia)) {		// si no esta aprobada la materia
+				set.add(materia);
 			}
 		}
-
-
-
+		
+		Set<Materia> materiasPorCursar = new HashSet<>();
 		for (Materia  m : set) {
-			ArrayList<Materia> materiasPorCursar = new ArrayList<>();
+			System.out.println(m.obtenerNombre());
 			if (cuatrimestres.size() == 0) {
 				Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
 				nuevoCuatri.agregarMateria(m);
 				cuatrimestres.add(nuevoCuatri);
-                System.out.println("PRIMER CUATRIMESTRE QUE CONSTRUYE");
             }
 			else {
 				int cantidadDeCuatrimestres = cuatrimestres.size();
-				Cuatrimestre ultimoCuatrimestre = cuatrimestres.get(cantidadDeCuatrimestres-1);
-				if (!agregarMateria(m, ultimoCuatrimestre, cantidadDeCuatrimestres)){
-					materiasPorCursar.add(m);
-					//NUNCA ENTRA ACA!!!!!!!!!
+				if (! agregarMateria(m, cuatrimestres.get(cantidadDeCuatrimestres-1), cantidadDeCuatrimestres)){
+					System.out.println(materiasPorCursar.add(m));
 				}
-				for (int j=0; j<materiasPorCursar.size(); j++) {		// me fijo en las materias que me tuve que saltear porque no estaban sus correlativas o se pisaban los horarios
-					if (agregarMateria(materiasPorCursar.get(j), ultimoCuatrimestre, cuatrimestres.size())) {
-						materiasPorCursar.remove(j);
+				System.out.println(materiasPorCursar.size());
+				cantidadDeCuatrimestres = cuatrimestres.size();
+				Set<Materia> materiasARemover = new HashSet<>();
+				for (Materia materia : materiasPorCursar) {		// me fijo en las materias que me tuve que saltear porque no estaban sus correlativas o se pisaban los horarios
+					if (agregarMateria(materia, cuatrimestres.get(cantidadDeCuatrimestres-1), cuatrimestres.size())) {
+						materiasARemover.add(materia);
 					}
 				}
+				materiasPorCursar.removeAll(materiasARemover);
 			}
 		}
 	}
 
 	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
-
-		if (hayCorrelativas(m) && c.validaHorarios(m)) {
-			if (c.hayCreditos(m, creditos)) {
+		
+		if (hayCorrelativas(m)) {
+			if (c.hayCreditos(m, creditos) && c.validaHorarios(m)) {
 				c.agregarMateria(m);
 				return true;
 			}
@@ -139,11 +136,11 @@ public class Plan {
 	public String toString() {
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Plan: ").append("\n-----------------------------------------------------------------------");
-		System.out.println(cuatrimestres.size());
+		sb.append("\n-----------------------------------------------------------------------\n");
+		//System.out.println(cuatrimestres.size());
 		for (int i=0; i<cuatrimestres.size(); i++) {
 			sb.append(cuatrimestres.get(i).toString());
-			sb.append("\n-----------------------------------------------------------------------");
+			sb.append("\n-----------------------------------------------------------------------\n");
 		}
 		return sb.toString();
 	}

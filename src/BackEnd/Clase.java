@@ -1,5 +1,3 @@
-package BackEnd;
-
 public class Clase {
     private String dia;
     private String sede;
@@ -64,3 +62,4 @@ public class Clase {
 
     }
 }
+

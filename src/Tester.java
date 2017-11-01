@@ -1,5 +1,3 @@
-import BackEnd.*;
-
 import java.util.*;
 
 public class Tester {
@@ -149,11 +147,11 @@ public class Tester {
 
     PlanAcademico planAcademico = new PlanAcademico(27,cuatrimestresInformatica, materiasAprobadas);
     planAcademico.construirPlan();
-    PlanCorrelativo planCorrelativo = new PlanCorrelativo(27, cuatrimestresInformatica, materiasAprobadas);
-    planCorrelativo.construirPlan();
+    /*PlanCorrelativo planCorrelativo = new PlanCorrelativo(27, cuatrimestresInformatica, materiasAprobadas);
+    planCorrelativo.construirPlan();*/
 
     System.out.println("Plan Academico: " + planAcademico + "\n\n");
-    System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
+    //System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
 
   }
 }

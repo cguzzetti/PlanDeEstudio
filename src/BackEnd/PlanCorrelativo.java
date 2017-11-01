@@ -1,5 +1,3 @@
-package BackEnd;
-
 import java.util.*;
 
 public class PlanCorrelativo extends Plan {
@@ -14,11 +12,11 @@ public class PlanCorrelativo extends Plan {
 			@Override
 			public int compare (Materia m1, Materia m2) {
 
-				int prioridad = m1.obtenerPrioridad() - m2.obtenerPrioridad();
+				int prioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();
 				if (prioridad == 0) {
 					if (m1.sonCorrelativas(m2))
-						return -1;	// quiero que m2 este antes que m1
-					return 1; 	// quiero que m1 este antes que m2
+						return 1;	// quiero que m2 este antes que m1
+					return -1; 	// quiero que m1 este antes que m2
 				}
 				return prioridad;
 			}

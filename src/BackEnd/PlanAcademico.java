@@ -1,5 +1,3 @@
-package BackEnd;
-
 import java.util.*;
 
 public class PlanAcademico extends Plan {
@@ -14,15 +12,27 @@ public class PlanAcademico extends Plan {
 			@Override
 			public int compare (Materia m1, Materia m2) {
 
-				int prioridad = m1.obtenerCuatrimestre().obtenerNombre().compareTo(m2.obtenerCuatrimestre().obtenerNombre());
+				int difCuatrimestres = m1.obtenerCuatrimestre().obtenerNombre().compareTo(m2.obtenerCuatrimestre().obtenerNombre());
 
-				if (prioridad == 0)
-					return m1.obtenerPrioridad()- m2.obtenerPrioridad();
+				if (difCuatrimestres == 0) {
+					int difPrioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();
+					if ( difPrioridad == 0) {
+						List<Materia> array = new ArrayList<>();
+						array.add(m1);
+						array.add(m2);
+						Collections.shuffle(array);
+						if (array.remove(0).equals(m1)) {
+							return -1;
+						}
+						return 1;
+					}
+					return difPrioridad;
+				}
 
-				return prioridad;
+				return difCuatrimestres;
 			}
 		});
-
+		
 		super.construirPlan(set);
 	}
 }
