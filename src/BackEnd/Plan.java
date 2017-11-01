@@ -52,8 +52,10 @@ public class Plan {
 		
 		Set<Materia> materiasPorCursar = new HashSet<>();
 		for (Materia  m : set) {
-			System.out.println(m.obtenerNombre());
-			System.out.println("cant de cuatris: "+ cuatrimestres.size());
+
+			System.out.println(">>Entra al for");
+
+			System.out.println(">>cant de cuatris: "+ cuatrimestres.size());
 			if (cuatrimestres.size() == 0) {
 				Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
 				nuevoCuatri.agregarMateria(m);
@@ -79,13 +81,15 @@ public class Plan {
 
 	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
 
-		System.out.println("\n\n AGREGANDO MATERIA:\n" +m+ "\n\n");
+		System.out.println(">>>AGREGANDO MATERIA: " +m. obtenerNombre());
 		if (hayCorrelativas(m)) {
 			if (c.hayCreditos(m, creditos) && c.validaHorarios(m)) {
 				c.agregarMateria(m);
+				System.out.println(">>>>la agrega");
 				return true;
 			}
 			else {
+				System.out.println(">>>>nuevo cuatri   "+m.obtenerNombre());
 				StringBuilder formato = new StringBuilder();
 				formato.append("Cuatrimestre ").append(dim + 1);
 				Cuatrimestre nuevoCuatri = new Cuatrimestre(formato.toString());
@@ -94,7 +98,7 @@ public class Plan {
 				return true;
 			}
 		}
-
+		System.out.println(">>>>faltan correlativas");
 		return false;
 	}
 
