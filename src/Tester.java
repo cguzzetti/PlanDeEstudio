@@ -1,3 +1,7 @@
+import BackEnd.*;
+
+
+
 import java.util.*;
 
 public class Tester {
@@ -32,9 +36,9 @@ public class Tester {
         Materia sistemasDeRep=new Materia("Sistemas de Representación",3,c1);
           sistemasDeRep.agregarClase(new Clase("Miércoles",MADERO,14,17));
         Materia analisis2=new Materia("Análisis Matemático II",6,c2);
-          analisis1.agregarClase(new Clase("Lunes",MADERO,12,14));
-          analisis1.agregarClase(new Clase("Martes",MADERO,11,13));
-          analisis1.agregarClase(new Clase("Jueves",MADERO,13,15));
+          analisis2.agregarClase(new Clase("Lunes",MADERO,12,14));
+          analisis2.agregarClase(new Clase("Martes",MADERO,11,13));
+          analisis2.agregarClase(new Clase("Jueves",MADERO,13,15));
         Materia fisica1=new Materia("Física I",6,c2);
           fisica1.agregarClase(new Clase("Martes",MADERO,8,10));
           fisica1.agregarClase(new Clase("Jueves",MADERO,11,13));

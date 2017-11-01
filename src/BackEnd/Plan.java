@@ -1,3 +1,5 @@
+package BackEnd;
+
 import java.util.*;
 
 import java.util.Map.Entry;
@@ -51,6 +53,7 @@ public class Plan {
 		Set<Materia> materiasPorCursar = new HashSet<>();
 		for (Materia  m : set) {
 			System.out.println(m.obtenerNombre());
+			System.out.println("cant de cuatris: "+ cuatrimestres.size());
 			if (cuatrimestres.size() == 0) {
 				Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
 				nuevoCuatri.agregarMateria(m);
@@ -75,7 +78,8 @@ public class Plan {
 	}
 
 	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
-		
+
+		System.out.println("\n\n AGREGANDO MATERIA:\n" +m+ "\n\n");
 		if (hayCorrelativas(m)) {
 			if (c.hayCreditos(m, creditos) && c.validaHorarios(m)) {
 				c.agregarMateria(m);
