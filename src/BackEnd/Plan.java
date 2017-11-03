@@ -58,7 +58,7 @@ public class Plan {
 		cuatrimestres.add(nuevoCuatri);
 		System.out.println(set.remove(set.first()));
 
-
+		System.out.println("holaaaa");
 		for (Materia  m : set) {
 
 
