@@ -15,6 +15,9 @@ public class PlanCorrelativo extends Plan {
 			@Override
 			public int compare (Materia m1, Materia m2) {
 
+				if (m1.equals(m2))
+					return 0;
+
 				int prioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();
 				if (prioridad == 0) {
 					if (m1.sonCorrelativas(m2))

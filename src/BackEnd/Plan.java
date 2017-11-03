@@ -51,8 +51,39 @@ public class Plan {
 		}
 		
 		Set<Materia> materiasPorCursar = new HashSet<>();
+
+
+		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
+		nuevoCuatri.agregarMateria(set.first());
+		cuatrimestres.add(nuevoCuatri);
+		System.out.println(set.remove(set.first()));
+
+
 		for (Materia  m : set) {
 
+
+			System.out.println(">>Entra al for");
+
+			boolean flag=true;
+				Iterator<Cuatrimestre> i=cuatrimestres.iterator();
+				while(flag && i.hasNext())
+				{
+					flag=!agregarMateria(m,i.next());
+				}
+				if(flag)
+				{
+					System.out.println(">>>>nuevo cuatri   "+m.obtenerNombre());
+					StringBuilder formato = new StringBuilder();
+					formato.append("Cuatrimestre ").append(cuatrimestres.size()+1);
+					Cuatrimestre nuevoCuatri2 = new Cuatrimestre(formato.toString());
+					nuevoCuatri.agregarMateria(m);
+					cuatrimestres.add(nuevoCuatri2);
+				}
+
+
+
+
+				/*
 			System.out.println(">>Entra al for");
 
 			System.out.println(">>cant de cuatris: "+ cuatrimestres.size());
@@ -75,20 +106,22 @@ public class Plan {
 					}
 				}
 				materiasPorCursar.removeAll(materiasARemover);
-			}
+			}*/
 		}
 	}
 
-	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
+	private boolean agregarMateria(Materia m, Cuatrimestre c/*, int dim*/) throws NoTimeException{
 
 		System.out.println(">>>AGREGANDO MATERIA: " +m. obtenerNombre());
-		if (hayCorrelativas(m)) {
+
+
 			if (c.hayCreditos(m, creditos) && c.validaHorarios(m)) {
+				if (hayCorrelativas(m,c)) {
 				c.agregarMateria(m);
 				System.out.println(">>>>la agrega");
 				return true;
 			}
-			else {
+			/*else {
 				System.out.println(">>>>nuevo cuatri   "+m.obtenerNombre());
 				StringBuilder formato = new StringBuilder();
 				formato.append("Cuatrimestre ").append(dim + 1);
@@ -96,27 +129,18 @@ public class Plan {
 				nuevoCuatri.agregarMateria(m);
 				cuatrimestres.add(nuevoCuatri);
 				return true;
-			}
+			}*/
 		}
-		System.out.println(">>>>faltan correlativas");
+		System.out.println(">>>>no coinciden horarios o supera creditosMax");
 		return false;
 	}
 
-	private boolean hayCorrelativas(Materia m) {		// metodo que verifica que las materias correlativas ya esten en el plan para ser cursadas
+	private boolean hayCorrelativas(Materia m,Cuatrimestre c) {		// metodo que verifica que las materias correlativas ya esten en el plan para ser cursadas
 
 		Set<Materia> materiasDelPlan = new HashSet<>();
 		Set<Materia> materiasCorrelativas = m.obtenerCorrelativas();
 
-		int size;
-
-		if (cuatrimestres.get(cuatrimestres.size()-1).hayCreditos(m, creditos)) {	// si hay lugar en el ultimo cuatrimestre para la materia
-			size = cuatrimestres.size()-1;
-		}
-		else {
-			size = cuatrimestres.size();
-		}
-
-		for (int i=0; i<size; i++) {
+		for (int i=0; i<cuatrimestres.indexOf(c)-1; i++) {
 			materiasDelPlan.addAll(cuatrimestres.get(i).obtenerMaterias());
 		}
 
