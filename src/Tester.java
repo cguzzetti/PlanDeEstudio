@@ -1,4 +1,4 @@
-package BackEnd;
+import BackEnd.*;
 
 import java.util.*;
 
@@ -97,7 +97,7 @@ public class Tester {
             metodosNumericos.agregarClase(new Clase("Lunes",MADERO,8,11));
         Materia protos=new Materia("Protocolos de Comunicación",6,c6);
             protos.agregarClase(new Clase("Martes",SDT,15,18));
-            protos.agregarClase(new Clase("Miércoles",SDT,15,18));
+            protos.agregarClase(new Clase("Miércoles",MADERO,15,18));
         Materia paw=new Materia("Proyecto de Aplicaciones Web",6,c6);
             paw.agregarClase(new Clase("Lunes",MADERO,19,22));
             paw.agregarClase(new Clase("Miércoles",MADERO,19,22));
@@ -146,8 +146,8 @@ public class Tester {
     fisica3.setearAutoCorrelativas(autocorrelativasFisicaIII);
 
     Set<Materia> materiasDesaprobadas = new HashSet<>();
-    materiasDesaprobadas.add(algebra);
-    materiasDesaprobadas.addAll(c2.obtenerMaterias());
+
+    materiasDesaprobadas.add(pi);
     materiasDesaprobadas.addAll(c3.obtenerMaterias());
     materiasDesaprobadas.addAll(c4.obtenerMaterias());
     materiasDesaprobadas.addAll(c5.obtenerMaterias());

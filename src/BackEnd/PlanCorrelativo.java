@@ -4,11 +4,14 @@ import java.util.*;
 
 public class PlanCorrelativo extends Plan {
 
-	public PlanCorrelativo (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {
-		super(creditos, carrera, materiasAprobadas);
+	public PlanCorrelativo (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
+		super(creditos, carrera, materiasPorAprobar);
 	}
 
 	public void construirPlan() throws  NoTimeException{
+
+		System.out.println("____________________PLAN CORRELATIVO___________________");
+
 
 		TreeSet<Materia> set = new TreeSet<>( new Comparator<Materia>() {
 			@Override

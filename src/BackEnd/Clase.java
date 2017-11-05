@@ -32,10 +32,17 @@ public class Clase {
 
     public boolean validaHorario(Clase clase){
 
-        if((!dia.equals(clase.obtenerDia()) || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || (horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio())) && sede.equals(clase.obtenerSede()))
-            return true; 
-        return false;
+        if(!dia.equals(clase.obtenerDia()))
+            return true;
+        else if (sede.equals(clase.obtenerSede()))
+        {
+            return horaInicio>=clase.obtenerHoraFin() || horaFin<=clase.obtenerHoraInicio();
+        }
+
+        return horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio();
+
     }
+
 
 
     @Override
