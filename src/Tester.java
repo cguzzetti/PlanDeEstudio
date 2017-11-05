@@ -1,6 +1,4 @@
-import BackEnd.*;
-
-
+package BackEnd;
 
 import java.util.*;
 
@@ -51,7 +49,7 @@ public class Tester {
           pi.agregarClase(new Clase("Miércoles",MADERO,10,13));
           pi.agregarClase(new Clase("Viernes",MADERO,10,12));
         Materia xml=new Materia("Diseño y Porcesamiento de Documentos XML",3,c3);
-            xml.agregarClase(new Clase("Miercoles", MADERO,9,12));
+           	xml.agregarClase(new Clase("Miercoles", MADERO,9,12));
         Materia fisica2=new Materia("Física II",6,c3);
             fisica2.agregarClase(new Clase("Lunes",MADERO,13,15));
             fisica2.agregarClase(new Clase("Martes",MADERO,17,19));
@@ -81,7 +79,7 @@ public class Tester {
         Materia baseDeDatos1=new Materia("Base de Datos I",6,c5);
             baseDeDatos1.agregarClase(new Clase("Martes",MADERO,14,17));
             baseDeDatos1.agregarClase(new Clase("Jueves",MADERO,10,13));
-        Materia ingeSoft1=new Materia("Ingenieríe de Software I",6,c5);
+        Materia ingeSoft1=new Materia("Ingeniería de Software I",6,c5);
             ingeSoft1.agregarClase(new Clase("Martes",MADERO,11,14));
             ingeSoft1.agregarClase(new Clase("Jueves",MADERO,14,17));
         Materia hci=new Materia("Interaccion Hombre-computadora",6,c5);
@@ -142,20 +140,26 @@ public class Tester {
     cuatrimestresInformatica.add(c4);
     cuatrimestresInformatica.add(c5);
     cuatrimestresInformatica.add(c6);
+    
+    Set<Materia> autocorrelativasFisicaIII = new HashSet<>();
+    autocorrelativasFisicaIII.add(fisica2);
+    fisica3.setearAutoCorrelativas(autocorrelativasFisicaIII);
 
-    Set<Materia> materiasAprobadas = new HashSet<>();
-    materiasAprobadas.add(analisis1);
-    materiasAprobadas.add(metodologia);
-    materiasAprobadas.add(introInfo);
-    materiasAprobadas.add(sistemasDeRep);
+    Set<Materia> materiasDesaprobadas = new HashSet<>();
+    materiasDesaprobadas.add(algebra);
+    materiasDesaprobadas.addAll(c2.obtenerMaterias());
+    materiasDesaprobadas.addAll(c3.obtenerMaterias());
+    materiasDesaprobadas.addAll(c4.obtenerMaterias());
+    materiasDesaprobadas.addAll(c5.obtenerMaterias());
+    materiasDesaprobadas.addAll(c6.obtenerMaterias());
 
-    PlanAcademico planAcademico = new PlanAcademico(27,cuatrimestresInformatica, materiasAprobadas);
+    PlanAcademico planAcademico = new PlanAcademico(27, cuatrimestresInformatica, materiasDesaprobadas);
     planAcademico.construirPlan();
-    /*PlanCorrelativo planCorrelativo = new PlanCorrelativo(27, cuatrimestresInformatica, materiasAprobadas);
-    planCorrelativo.construirPlan();*/
+    PlanCorrelativo planCorrelativo = new PlanCorrelativo(27, cuatrimestresInformatica, materiasDesaprobadas);
+    planCorrelativo.construirPlan();
 
     System.out.println("Plan Academico: " + planAcademico + "\n\n");
-    //System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
+    System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
 
   }
 }

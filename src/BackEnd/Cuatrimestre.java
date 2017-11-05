@@ -1,9 +1,8 @@
 package BackEnd;
 
-
 import java.util.*;
 
-public class Cuatrimestre {
+public class Cuatrimestre implements Comparable<Cuatrimestre>{
 
 	private String nombre;
 	private int creditos;
@@ -44,6 +43,20 @@ public class Cuatrimestre {
 
 	public boolean hayCreditos(Materia m, int creditosPorCuatrimestre) {
 		return (m.obtenerCreditos() + creditos) <= creditosPorCuatrimestre;
+	}
+	
+	public boolean hayAutoCorrelativas (Materia materia) {
+		Set<Materia> autocorrelativas = materia.obtenerAutoCorrelativas();
+		for (Materia m : autocorrelativas ) {
+			if(materias.contains(m))
+				return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int compareTo(Cuatrimestre c) {
+		return nombre.compareTo(c.obtenerNombre());
 	}
 
 	@Override

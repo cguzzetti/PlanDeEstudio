@@ -9,25 +9,13 @@ public class Plan {
 	private int creditos;
 	private List<Cuatrimestre> cuatrimestres;
 	private List<Cuatrimestre> carrera;
-	private Map<Materia, Boolean> materias;
+	private Set<Materia> materiasDesaprobadas; 
 
-	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasAprobadas) {		//VER FUNCION DE MATERIASAPROBADAS
-		this.materias = new HashMap<>();
+	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasDesaprobadas) {		//VER FUNCION DE materias
 		this.cuatrimestres = new ArrayList<>();
 		this.creditos = creditos;
 		this.carrera=new ArrayList<>(carrera);
-
-		Set<Materia> set = new HashSet<Materia>();
-		for (Iterator<Cuatrimestre> i = carrera.iterator(); i.hasNext(); ) {
-			Cuatrimestre aux = i.next();
-			set.addAll(aux.obtenerMaterias());
-		}
-		
-		for (Materia aux : set ) {
-			materias.put(aux, materiasAprobadas.contains(aux));
-		}
-		
-		//EL CONSTRUCTOR ANDA
+		this.materiasDesaprobadas=materiasDesaprobadas;
 	}
 
 	public int obtenerCreditos () {
@@ -37,119 +25,82 @@ public class Plan {
 	public List<Cuatrimestre> obtenerCuatrimestres(){
 		return cuatrimestres;
 	}
-
-	public Map<Materia, Boolean> obtenerMaterias () {
+	
+	public Set<Materia> obtenerMaterias(){
+		Set<Materia> materias = new HashSet<>();
+		for ( Cuatrimestre c : carrera) {
+			materias.addAll(c.obtenerMaterias());
+		}
 		return materias;
+		
 	}
 
 	public void construirPlan(TreeSet<Materia> set) throws NoTimeException {
 		
-		for (Materia materia : materias.keySet()) {
-			if (! materias.get(materia)) {		// si no esta aprobada la materia
-				set.add(materia);
-			}
-		}
+		set.addAll(materiasDesaprobadas);
 		
-		Set<Materia> materiasPorCursar = new HashSet<>();
-
-
 		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
 		nuevoCuatri.agregarMateria(set.first());
 		cuatrimestres.add(nuevoCuatri);
-		System.out.println(set.remove(set.first()));
-
-		System.out.println("holaaaa");
+		System.out.println(set.first().obtenerNombre());
+		set.remove(set.first());
+		
 		for (Materia  m : set) {
-
-
 			System.out.println(">>Entra al for");
-
-			boolean flag=true;
-				Iterator<Cuatrimestre> i=cuatrimestres.iterator();
-				while(flag && i.hasNext())
-				{
-					flag=!agregarMateria(m,i.next());
-				}
-				if(flag)
-				{
-					System.out.println(">>>>nuevo cuatri   "+m.obtenerNombre());
-					StringBuilder formato = new StringBuilder();
-					formato.append("Cuatrimestre ").append(cuatrimestres.size()+1);
-					Cuatrimestre nuevoCuatri2 = new Cuatrimestre(formato.toString());
-					nuevoCuatri.agregarMateria(m);
-					cuatrimestres.add(nuevoCuatri2);
-				}
-
-
-
-
-				/*
-			System.out.println(">>Entra al for");
-
-			System.out.println(">>cant de cuatris: "+ cuatrimestres.size());
-			if (cuatrimestres.size() == 0) {
-				Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
-				nuevoCuatri.agregarMateria(m);
-				cuatrimestres.add(nuevoCuatri);
-            }
-			else {
-				int cantidadDeCuatrimestres = cuatrimestres.size();
-				if (! agregarMateria(m, cuatrimestres.get(cantidadDeCuatrimestres-1), cantidadDeCuatrimestres)){
-					System.out.println(materiasPorCursar.add(m));
-				}
-				System.out.println(materiasPorCursar.size());
-				cantidadDeCuatrimestres = cuatrimestres.size();
-				Set<Materia> materiasARemover = new HashSet<>();
-				for (Materia materia : materiasPorCursar) {		// me fijo en las materias que me tuve que saltear porque no estaban sus correlativas o se pisaban los horarios
-					if (agregarMateria(materia, cuatrimestres.get(cantidadDeCuatrimestres-1), cuatrimestres.size())) {
-						materiasARemover.add(materia);
-					}
-				}
-				materiasPorCursar.removeAll(materiasARemover);
-			}*/
+			System.out.println(m.obtenerNombre());
+			int cantidadDeCuatrimestres = cuatrimestres.size();
+			boolean flag = false;
+			Iterator<Cuatrimestre> i = cuatrimestres.iterator();
+			while ( !flag && i.hasNext()) {		// itero todos los cuatrimestres para ver donde agrego
+				flag = agregarMateria(m, i.next(), cantidadDeCuatrimestres);
+			}
+			if (!flag) {
+				System.out.println(">>>>nuevo cuatri");
+				StringBuilder formato = new StringBuilder();
+				formato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 1);
+				Cuatrimestre nuevoCuatrimestre = new Cuatrimestre(formato.toString());
+				nuevoCuatrimestre.agregarMateria(m);
+				cuatrimestres.add(nuevoCuatrimestre);
+			}
 		}
 	}
 
-	private boolean agregarMateria(Materia m, Cuatrimestre c/*, int dim*/) throws NoTimeException{
-
-		System.out.println(">>>AGREGANDO MATERIA: " +m. obtenerNombre());
-
-
-			if (c.hayCreditos(m, creditos) && c.validaHorarios(m)) {
-				if (hayCorrelativas(m,c)) {
-				c.agregarMateria(m);
-				System.out.println(">>>>la agrega");
-				return true;
-			}
-			/*else {
-				System.out.println(">>>>nuevo cuatri   "+m.obtenerNombre());
-				StringBuilder formato = new StringBuilder();
-				formato.append("Cuatrimestre ").append(dim + 1);
-				Cuatrimestre nuevoCuatri = new Cuatrimestre(formato.toString());
-				nuevoCuatri.agregarMateria(m);
-				cuatrimestres.add(nuevoCuatri);
-				return true;
-			}*/
+	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
+		
+		if (c.hayCreditos(m, creditos) && c.validaHorarios(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m)) {
+			c.agregarMateria(m);
+			return true;
 		}
-		System.out.println(">>>>no coinciden horarios o supera creditosMax");
+		
+		if (c.hayAutoCorrelativas(m))
+			System.out.println("Hay autocorrelativas");
+		
+		if (!c.hayCreditos(m, creditos))
+			System.out.println("No hay creditos");
+		
+		if (!c.validaHorarios(m))
+			System.out.println("No valida horarios");
+		
 		return false;
 	}
 
-	private boolean hayCorrelativas(Materia m,Cuatrimestre c) {		// metodo que verifica que las materias correlativas ya esten en el plan para ser cursadas
+	private boolean correlativasCursadas(Materia m, Cuatrimestre c) {		// metodo que verifica que las materias correlativas ya esten en el plan para ser cursadas
 
 		Set<Materia> materiasDelPlan = new HashSet<>();
 		Set<Materia> materiasCorrelativas = m.obtenerCorrelativas();
-
-		for (int i=0; i<cuatrimestres.indexOf(c)-1; i++) {
+		
+		for (int i=0; i<cuatrimestres.indexOf(c); i++) {
 			materiasDelPlan.addAll(cuatrimestres.get(i).obtenerMaterias());
 		}
 
-		for (Iterator<Materia> i = materiasCorrelativas.iterator(); i.hasNext(); ) {
-			Materia aux = i.next();
-			if (!materiasDelPlan.contains(aux) && !materias.get(aux)) // si la materia no esta en el plan ni esta aprobada
+		for (Materia materia : materiasCorrelativas) {
+			if (!materiasDelPlan.contains(materia) && materiasDesaprobadas.contains(materia)) {	// si la materia no esta en el plan ni esta aprobada
+				System.out.println("Correlativas NO cursadas");
 				return false;
+			}
 		}
-
+		
+		System.out.println("Correlativas cursadas");
 		return true;
 
 	}
@@ -169,7 +120,6 @@ public class Plan {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n-----------------------------------------------------------------------\n");
-		//System.out.println(cuatrimestres.size());
 		for (int i=0; i<cuatrimestres.size(); i++) {
 			sb.append(cuatrimestres.get(i).toString());
 			sb.append("\n-----------------------------------------------------------------------\n");

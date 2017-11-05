@@ -1,6 +1,5 @@
 package BackEnd;
 
-
 import java.util.*;
 
 public class PlanAcademico extends Plan {
@@ -14,10 +13,11 @@ public class PlanAcademico extends Plan {
 		TreeSet<Materia> set = new TreeSet<Materia>( new Comparator<Materia>() {
 			@Override
 			public int compare (Materia m1, Materia m2) {
+				
 				if (m1.equals(m2))
 					return 0;
 
-				int difCuatrimestres = m1.obtenerCuatrimestre().obtenerNombre().compareTo(m2.obtenerCuatrimestre().obtenerNombre());
+				int difCuatrimestres = m1.obtenerCuatrimestre().compareTo(m2.obtenerCuatrimestre());
 
 				if (difCuatrimestres == 0) {
 					int difPrioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();

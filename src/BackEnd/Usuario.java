@@ -1,21 +1,23 @@
 package BackEnd;
 
+import java.util.*;
+
 public class Usuario {
 
-   /* private String nombreItba;
-    private Map<String,List<Cuatrimestre>> carrera;
+	private String nombreItba;
+    private List<Cuatrimestre> carrera;
 
-    public Usuario(String nombreItba,Map<String,List<Cuatrimestre>> carrera)
+    public Usuario(String nombreItba, List<Cuatrimestre> carrera)
     {
         this.nombreItba=nombreItba;
         this.carrera=carrera;
     }
 
-    public void setearCarrera(Map<String,List<Cuatrimestre>> carrera) {
+    public void setearCarrera(List<Cuatrimestre> carrera) {
         this.carrera = carrera;
     }
 
-    public Map<String,List<Cuatrimestre>> obtenerCarrera() {
+    public List<Cuatrimestre> obtenerCarrera() {
         return carrera;
     }
 
@@ -43,7 +45,7 @@ public class Usuario {
         if(!(o instanceof Usuario))
             return false;
         Usuario aux=(Usuario) o;
-        if(this.nombreItba.compareTo(aux.getNombreItba())!=0)
+        if(this.nombreItba.compareTo(aux.obtenerNombreItba())!=0)
             return false;
         return true;
     }
@@ -56,6 +58,6 @@ public class Usuario {
         result = prime * result + ((nombreItba == null) ? 0 : nombreItba.hashCode());
         result = prime * result + ((carrera == null) ? 0 : carrera.hashCode());
         return result;
-    }*/
+    }
 
 }

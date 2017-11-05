@@ -1,4 +1,3 @@
-
 package BackEnd;
 
 import java.util.*;
@@ -10,6 +9,7 @@ public class Materia {
     private Set<Clase> clases;
     private Set<Materia> correlativas;
     private int prioridadCorrelativas;
+    private Set<Materia> materiasAutoCorrelativas;
 
     public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre){
         this.nombre=nombre;
@@ -18,6 +18,7 @@ public class Materia {
         this.prioridadCorrelativas=0;
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
+        this.materiasAutoCorrelativas=new HashSet<>();
 
         try {
             cuatrimestre.agregarMateria(this);
@@ -32,6 +33,14 @@ public class Materia {
                 throw new NoTimeException();
         }
         clases.add(clase);
+    }
+    
+    public void setearAutoCorrelativas(Set<Materia> materias) {
+    		this.materiasAutoCorrelativas=materias;
+    }
+    
+    public Set<Materia> obtenerAutoCorrelativas (){
+    		return materiasAutoCorrelativas;
     }
 
     public Cuatrimestre obtenerCuatrimestre(){
@@ -114,5 +123,4 @@ public class Materia {
         return mensaje;
     }
 }
-
 

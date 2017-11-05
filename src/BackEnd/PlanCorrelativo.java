@@ -1,6 +1,5 @@
 package BackEnd;
 
-
 import java.util.*;
 
 public class PlanCorrelativo extends Plan {
@@ -14,7 +13,7 @@ public class PlanCorrelativo extends Plan {
 		TreeSet<Materia> set = new TreeSet<>( new Comparator<Materia>() {
 			@Override
 			public int compare (Materia m1, Materia m2) {
-
+				
 				if (m1.equals(m2))
 					return 0;
 

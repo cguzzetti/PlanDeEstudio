@@ -1,6 +1,5 @@
 package BackEnd;
 
-
 public class Clase {
     private String dia;
     private String sede;
@@ -33,8 +32,8 @@ public class Clase {
 
     public boolean validaHorario(Clase clase){
 
-        if((!dia.equals(clase.obtenerDia()) || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio()) && sede.equals(clase.obtenerSede()))
-            return true;    //este if es un choclo pero como dan todos true me paecio feo separarlo. Lo dejo a su gusto
+        if((!dia.equals(clase.obtenerDia()) || horaInicio>clase.obtenerHoraFin() || horaFin<clase.obtenerHoraInicio() || (horaInicio==clase.obtenerHoraFin() || horaFin==clase.obtenerHoraInicio())) && sede.equals(clase.obtenerSede()))
+            return true; 
         return false;
     }
 
@@ -65,4 +64,3 @@ public class Clase {
 
     }
 }
-
