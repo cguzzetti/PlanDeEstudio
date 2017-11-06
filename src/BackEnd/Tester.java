@@ -12,7 +12,7 @@ public class Tester {
     final String MADERO="Madero";
     final String SDT="Distrito Tecnológico";
 
-    Cuatrimestre c1=new Cuatrimestre("C1",Periodo.PRIMERO);
+    Cuatrimestre c1=new Cuatrimestre("C1",Periodo.PRIMERO);//ARRANCAMOS EN PRIMEOR PERO ES INDISTINTO
     Cuatrimestre c2=new Cuatrimestre("C2",Periodo.SEGUNDO);
     Cuatrimestre c3=new Cuatrimestre("C3",Periodo.PRIMERO);
     Cuatrimestre c4=new Cuatrimestre("C4",Periodo.SEGUNDO);
