@@ -10,6 +10,25 @@ public class Materia {
     private Set<Materia> correlativas;
     private int prioridadCorrelativas;
     private Set<Materia> materiasAutoCorrelativas;
+    private Periodo periodo;
+
+    public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, Periodo periodo){
+        this.nombre=nombre;
+        this.creditos=creditos;
+        this.cuatrimestre=cuatrimestre;
+        this.prioridadCorrelativas=0;
+        this.correlativas = new HashSet<>();
+        this.clases = new HashSet<>();
+        this.materiasAutoCorrelativas=new HashSet<>();
+        this.periodo = periodo;
+
+
+        try {
+            cuatrimestre.agregarMateria(this);
+        } catch (NoTimeException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre){
         this.nombre=nombre;
@@ -19,6 +38,8 @@ public class Materia {
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
         this.materiasAutoCorrelativas=new HashSet<>();
+        this.periodo = null;
+
 
         try {
             cuatrimestre.agregarMateria(this);

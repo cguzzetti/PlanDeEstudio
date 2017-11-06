@@ -37,7 +37,7 @@ public class Plan {
 		
 		set.addAll(materiasPorAprobar);
 		
-		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1");
+		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1",Periodo.PRIMERO);//aca arranca a armar como si estuviese en un primer cuatrimestre pero es indistinto
 		nuevoCuatri.agregarMateria(set.first());
 		cuatrimestres.add(nuevoCuatri);
 		System.out.println(set.first().obtenerNombre());
@@ -50,20 +50,20 @@ public class Plan {
 			boolean flag = false;
 			Iterator<Cuatrimestre> i = cuatrimestres.iterator();
 			while ( !flag && i.hasNext()) {		// itero todos los cuatrimestres para ver donde agrego
-				flag = agregarMateria(m, i.next(), cantidadDeCuatrimestres);
+				flag = agregarMateria(m, i.next());
 			}
 			if (!flag) {
 				System.out.println(">>>>nuevo cuatri");
 				StringBuilder formato = new StringBuilder();
 				formato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 1);
-				Cuatrimestre nuevoCuatrimestre = new Cuatrimestre(formato.toString());
+				Cuatrimestre nuevoCuatrimestre = new Cuatrimestre(formato.toString(),(cuatrimestres.get(cuatrimestres.size()-1).obtenerPeriodo().obtenerNumero()==1)?Periodo.SEGUNDO:Periodo.PRIMERO);
 				nuevoCuatrimestre.agregarMateria(m);
 				cuatrimestres.add(nuevoCuatrimestre);
 			}
 		}
 	}
 
-	private boolean agregarMateria(Materia m, Cuatrimestre c, int dim) throws NoTimeException{
+	private boolean agregarMateria(Materia m, Cuatrimestre c) throws NoTimeException{
 
 		System.out.println(c.obtenerNombre());
 

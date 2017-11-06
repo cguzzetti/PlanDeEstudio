@@ -7,11 +7,13 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 	private String nombre;
 	private int creditos;
 	private Set<Materia> materias;
+	private Periodo periodo;
 
-	public Cuatrimestre(String nombre){
+	public Cuatrimestre(String nombre, Periodo periodo){
 		this.creditos=0;
 		this.materias= new HashSet<>();
 		this.nombre=nombre;
+		this.periodo=periodo;
 	}
 
 	public void agregarMateria(Materia m) throws NoTimeException {
@@ -52,6 +54,11 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 				return true;
 		}
 		return false;
+	}
+
+	public Periodo obtenerPeriodo()
+	{
+		return periodo;
 	}
 	
 	@Override

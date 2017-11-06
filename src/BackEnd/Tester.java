@@ -12,12 +12,12 @@ public class Tester {
     final String MADERO="Madero";
     final String SDT="Distrito Tecnológico";
 
-    Cuatrimestre c1=new Cuatrimestre("C1");
-    Cuatrimestre c2=new Cuatrimestre("C2");
-    Cuatrimestre c3=new Cuatrimestre("C3");
-    Cuatrimestre c4=new Cuatrimestre("C4");
-    Cuatrimestre c5=new Cuatrimestre("C5");
-    Cuatrimestre c6=new Cuatrimestre("C6");
+    Cuatrimestre c1=new Cuatrimestre("C1",Periodo.PRIMERO);
+    Cuatrimestre c2=new Cuatrimestre("C2",Periodo.SEGUNDO);
+    Cuatrimestre c3=new Cuatrimestre("C3",Periodo.PRIMERO);
+    Cuatrimestre c4=new Cuatrimestre("C4",Periodo.SEGUNDO);
+    Cuatrimestre c5=new Cuatrimestre("C5",Periodo.PRIMERO);
+    Cuatrimestre c6=new Cuatrimestre("C6",Periodo.SEGUNDO);
 
 
     //todas las materias son en madero menos dos que indican que son en PP. Hay qeu fijarse bien por clase igual.
