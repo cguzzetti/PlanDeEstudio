@@ -52,21 +52,27 @@ public class Plan {
 					flag = agregarMateria(m, i.next());
 				}
 			}
+			else{
+				System.out.println("--> no hay creditos requeridos");
+			}
 			if (!flag) {
 				System.out.println(">>>>nuevo cuatri");
 				StringBuilder formato = new StringBuilder();
 				formato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 1);
 				Cuatrimestre nuevoCuatrimestre = new Cuatrimestre(formato.toString(),(cuatrimestres.get(cuatrimestres.size()-1).obtenerPeriodo().obtenerNumero()==1)?Periodo.SEGUNDO:Periodo.PRIMERO);
 				if (!nuevoCuatrimestre.periodoDisponible(m)){
+					System.out.println("--> no se dicta en este periodo");
 					System.out.println(">>>>nuevo cuatri");
 					StringBuilder otroFormato = new StringBuilder();
 					otroFormato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 2);
 					Cuatrimestre otroNuevoCuatrimestre = new Cuatrimestre(otroFormato.toString(), ((nuevoCuatrimestre.obtenerPeriodo().obtenerNumero() == 1)?Periodo.SEGUNDO:Periodo.PRIMERO));
+					System.out.println("-> agrega materia");
 					otroNuevoCuatrimestre.agregarMateria(m);
 					cuatrimestres.add(nuevoCuatrimestre);
 					cuatrimestres.add(otroNuevoCuatrimestre);
 				}
 				else {
+					System.out.println("-> agrega materia");
 					nuevoCuatrimestre.agregarMateria(m);
 					cuatrimestres.add(nuevoCuatrimestre);
 				}
@@ -84,6 +90,9 @@ public class Plan {
 			creditosTotales += m.obtenerCreditos();
 			return true;
 		}
+
+		if (!c.periodoDisponible(m))
+			System.out.println("-> no se dicta en este periodo");
 		
 		if (c.hayAutoCorrelativas(m))
 			System.out.println("-> Hay autocorrelativas");
