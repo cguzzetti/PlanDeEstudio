@@ -7,7 +7,7 @@ public class Tester {
   {
     List<Cuatrimestre> cuatrimestresInformatica=new ArrayList<>();
 
-    // comment para pushear
+
 
     final String MADERO="Madero";
     final String SDT="Distrito Tecnológico";
@@ -192,7 +192,7 @@ public class Tester {
         proyecto1.agregarCorrelativa(gestion);
         proyecto2.agregarCorrelativa(gestion);
 
-    int creditos1, creditos2, creditos3, creditos4, creditosDelPlan=27, creditosElectivas=30; // se obtienen del usuario
+    int creditosDelPlan=27;/*, creditos1, creditos2, creditos3, creditos4, creditosElectivas=30; // se obtienen del usuario
     creditos1 = creditosDelPlan - c7.obtenerCreditos();
     creditos2= creditosDelPlan - c8.obtenerCreditos();
     creditos3= creditosDelPlan - c9.obtenerCreditos();
@@ -215,12 +215,12 @@ public class Tester {
 
     if (creditos1 + creditos2 + creditos3 + creditos4 > creditosElectivas){
         creditos4 = 0;
-    }
+    }*/
 
-    Materia Electivas1 = new Materia("Electivas", creditos1, c7, 0);
-    Materia Electivas2 = new Materia("Electivas", creditos2, c8, 0);
-    Materia Electivas3 = new Materia("Electivas", creditos3, c9, 0);
-    Materia Electivas4 = new Materia("Electivas", creditos4, c10, 0);
+    Materia Electivas1 = new Materia("Electivas", 6, c7, 0);
+    Materia Electivas2 = new Materia("Electivas", 6, c8, 0);
+    Materia Electivas3 = new Materia("Electivas", 9, c9, 0);
+    Materia Electivas4 = new Materia("Electivas", 9, c10, 0);
 
     cuatrimestresInformatica.add(c1);
     cuatrimestresInformatica.add(c2);

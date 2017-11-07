@@ -35,7 +35,7 @@ public class Plan {
 		
 		set.addAll(materiasPorAprobar);
 		
-		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1",Periodo.PRIMERO);//aca arranca a armar como si estuviese en un primer cuatrimestre pero es indistinto
+		Cuatrimestre nuevoCuatri = new Cuatrimestre("Cuatrimestre 1",(Calendar.getInstance().get(Calendar.MONTH))<6?Periodo.PRIMERO:Periodo.SEGUNDO);
 		nuevoCuatri.agregarMateria(set.first());
 		cuatrimestres.add(nuevoCuatri);
 		System.out.println(set.first().obtenerNombre());
