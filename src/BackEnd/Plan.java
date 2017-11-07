@@ -8,16 +8,14 @@ public class Plan {
 	private List<Cuatrimestre> cuatrimestres;
 	private List<Cuatrimestre> carrera;
 	private Set<Materia> materiasPorAprobar;
+	private int creditosTotales;
 
-	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {		//VER FUNCION DE materias
+	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
 		this.cuatrimestres = new ArrayList<>();
 		this.creditos = creditos;
 		this.carrera=new ArrayList<>(carrera);
 		this.materiasPorAprobar = materiasPorAprobar;
-	}
-
-	public int obtenerCreditos () {
-		return creditos;
+		this.creditosTotales=0;
 	}
 
 	public List<Cuatrimestre> obtenerCuatrimestres(){
@@ -49,16 +47,29 @@ public class Plan {
 			int cantidadDeCuatrimestres = cuatrimestres.size();
 			boolean flag = false;
 			Iterator<Cuatrimestre> i = cuatrimestres.iterator();
-			while ( !flag && i.hasNext()) {		// itero todos los cuatrimestres para ver donde agrego
-				flag = agregarMateria(m, i.next());
+			if (hayCreditosRequeridos(m)) {
+				while (!flag && i.hasNext()) {        // itero todos los cuatrimestres para ver donde agrego
+					flag = agregarMateria(m, i.next());
+				}
 			}
 			if (!flag) {
 				System.out.println(">>>>nuevo cuatri");
 				StringBuilder formato = new StringBuilder();
 				formato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 1);
 				Cuatrimestre nuevoCuatrimestre = new Cuatrimestre(formato.toString(),(cuatrimestres.get(cuatrimestres.size()-1).obtenerPeriodo().obtenerNumero()==1)?Periodo.SEGUNDO:Periodo.PRIMERO);
-				nuevoCuatrimestre.agregarMateria(m);
-				cuatrimestres.add(nuevoCuatrimestre);
+				if (!nuevoCuatrimestre.periodoDisponible(m)){
+					System.out.println(">>>>nuevo cuatri");
+					StringBuilder otroFormato = new StringBuilder();
+					otroFormato.append("Cuatrimestre ").append(cantidadDeCuatrimestres + 2);
+					Cuatrimestre otroNuevoCuatrimestre = new Cuatrimestre(otroFormato.toString(), ((nuevoCuatrimestre.obtenerPeriodo().obtenerNumero() == 1)?Periodo.SEGUNDO:Periodo.PRIMERO));
+					otroNuevoCuatrimestre.agregarMateria(m);
+					cuatrimestres.add(nuevoCuatrimestre);
+					cuatrimestres.add(otroNuevoCuatrimestre);
+				}
+				else {
+					nuevoCuatrimestre.agregarMateria(m);
+					cuatrimestres.add(nuevoCuatrimestre);
+				}
 			}
 		}
 	}
@@ -67,9 +78,10 @@ public class Plan {
 
 		System.out.println(c.obtenerNombre());
 
-		if (c.hayCreditos(m, creditos) && c.validaHorarios(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m)) {
+		if (c.hayCreditos(m, creditos) && c.validaHorarios(m) && c.periodoDisponible(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m)) {
 			System.out.println("-> agrega materia");
 			c.agregarMateria(m);
+			creditosTotales += m.obtenerCreditos();
 			return true;
 		}
 		
@@ -104,6 +116,10 @@ public class Plan {
 		System.out.println(">>>>Correlativas cursadas");
 		return true;
 
+	}
+
+	private boolean hayCreditosRequeridos(Materia m){
+		return creditosTotales >= m.obtenerCreditosRequeridos();
 	}
 
 	@Override

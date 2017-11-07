@@ -60,6 +60,18 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 	{
 		return periodo;
 	}
+
+	public int obtenerCreditos() {
+		return creditos;
+	}
+
+	public boolean periodoDisponible(Materia m){
+
+		if (m.obtenerPeriodo()== null)
+			return true;
+
+		return m.obtenerPeriodo().equals(periodo);
+	}
 	
 	@Override
 	public int compareTo(Cuatrimestre c) {

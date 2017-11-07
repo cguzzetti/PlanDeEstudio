@@ -20,13 +20,19 @@ public class PlanCorrelativo extends Plan {
 				if (m1.equals(m2))
 					return 0;
 
-				int prioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();
-				if (prioridad == 0) {
-					if (m1.sonCorrelativas(m2))
-						return 1;	// quiero que m2 este antes que m1
-					return -1; 	// quiero que m1 este antes que m2
+				int difCreditosRequeridos = m1.obtenerCreditosRequeridos() - m2.obtenerCreditosRequeridos();
+
+				if (difCreditosRequeridos == 0){
+					int prioridad = m2.obtenerPrioridad() - m1.obtenerPrioridad();
+					if (prioridad == 0) {
+						if (m1.sonCorrelativas(m2))
+							return 1;	// quiero que m2 este antes que m1
+						return -1; 	// quiero que m1 este antes que m2
+					}
+					return prioridad;
 				}
-				return prioridad;
+
+				return difCreditosRequeridos;
 			}
 		});
 

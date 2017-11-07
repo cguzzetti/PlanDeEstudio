@@ -11,8 +11,9 @@ public class Materia {
     private int prioridadCorrelativas;
     private Set<Materia> materiasAutoCorrelativas;
     private Periodo periodo;
+    private int creditosRequeridos;
 
-    public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, Periodo periodo){
+    public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, Periodo periodo, int creditosRequeridos){
         this.nombre=nombre;
         this.creditos=creditos;
         this.cuatrimestre=cuatrimestre;
@@ -21,6 +22,7 @@ public class Materia {
         this.clases = new HashSet<>();
         this.materiasAutoCorrelativas=new HashSet<>();
         this.periodo = periodo;
+        this.creditosRequeridos=creditosRequeridos;
 
 
         try {
@@ -30,7 +32,7 @@ public class Materia {
         }
     }
 
-    public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre){
+    public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, int creditosRequeridos){
         this.nombre=nombre;
         this.creditos=creditos;
         this.cuatrimestre=cuatrimestre;
@@ -39,6 +41,7 @@ public class Materia {
         this.clases = new HashSet<>();
         this.materiasAutoCorrelativas=new HashSet<>();
         this.periodo = null;
+        this.creditosRequeridos=creditosRequeridos;
 
 
         try {
@@ -72,8 +75,16 @@ public class Materia {
         return nombre;
     }
 
+    public int obtenerCreditosRequeridos(){
+        return creditosRequeridos;
+    }
+
     public int obtenerCreditos(){
         return creditos;
+    }
+
+    public Periodo obtenerPeriodo(){
+        return periodo;
     }
 
     public Set<Clase> obtenerClases(){      //agregar este metodo a la planilla de drive
