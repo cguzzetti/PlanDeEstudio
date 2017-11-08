@@ -7,21 +7,19 @@ public class Tester {
   {
     List<Cuatrimestre> cuatrimestresInformatica=new ArrayList<>();
 
-
-
     final String MADERO="Madero";
     final String SDT="Distrito Tecnológico";
 
-    Cuatrimestre c1=new Cuatrimestre("C1",Periodo.PRIMERO);//ARRANCAMOS EN PRIMEOR PERO ES INDISTINTO
-    Cuatrimestre c2=new Cuatrimestre("C2",Periodo.SEGUNDO);
-    Cuatrimestre c3=new Cuatrimestre("C3",Periodo.PRIMERO);
-    Cuatrimestre c4=new Cuatrimestre("C4",Periodo.SEGUNDO);
-    Cuatrimestre c5=new Cuatrimestre("C5",Periodo.PRIMERO);
-    Cuatrimestre c6=new Cuatrimestre("C6",Periodo.SEGUNDO);
-    Cuatrimestre c7=new Cuatrimestre("C7",Periodo.PRIMERO);
-    Cuatrimestre c8=new Cuatrimestre("C8",Periodo.SEGUNDO);
-    Cuatrimestre c9=new Cuatrimestre("C9",Periodo.PRIMERO);
-    Cuatrimestre c10=new Cuatrimestre("C10",Periodo.SEGUNDO);
+    Cuatrimestre c1=new Cuatrimestre("1C1",Periodo.PRIMERO);//ARRANCAMOS EN PRIMERO PERO ES INDISTINTO
+    Cuatrimestre c2=new Cuatrimestre("1C2",Periodo.SEGUNDO);
+    Cuatrimestre c3=new Cuatrimestre("2C1",Periodo.PRIMERO);
+    Cuatrimestre c4=new Cuatrimestre("2C2",Periodo.SEGUNDO);
+    Cuatrimestre c5=new Cuatrimestre("3C1",Periodo.PRIMERO);
+    Cuatrimestre c6=new Cuatrimestre("3C2",Periodo.SEGUNDO);
+    Cuatrimestre c7=new Cuatrimestre("4C1",Periodo.PRIMERO);
+    Cuatrimestre c8=new Cuatrimestre("4C2",Periodo.SEGUNDO);
+    Cuatrimestre c9=new Cuatrimestre("5C1",Periodo.PRIMERO);
+    Cuatrimestre c10=new Cuatrimestre("5C2",Periodo.SEGUNDO);
 
 
     //todas las materias son en madero menos dos que indican que son en PP. Hay qeu fijarse bien por clase igual.
@@ -192,7 +190,7 @@ public class Tester {
         proyecto1.agregarCorrelativa(gestion);
         proyecto2.agregarCorrelativa(gestion);
 
-    int creditosDelPlan=27;/*, creditos1, creditos2, creditos3, creditos4, creditosElectivas=30; // se obtienen del usuario
+    /*, creditos1, creditos2, creditos3, creditos4, creditosElectivas=30; // se obtienen del usuario
     creditos1 = creditosDelPlan - c7.obtenerCreditos();
     creditos2= creditosDelPlan - c8.obtenerCreditos();
     creditos3= creditosDelPlan - c9.obtenerCreditos();
@@ -215,12 +213,12 @@ public class Tester {
 
     if (creditos1 + creditos2 + creditos3 + creditos4 > creditosElectivas){
         creditos4 = 0;
-    }*/
+    }
 
-    Materia Electivas1 = new Materia("Electivas", 6, c7, 0);
-    Materia Electivas2 = new Materia("Electivas", 6, c8, 0);
-    Materia Electivas3 = new Materia("Electivas", 9, c9, 0);
-    Materia Electivas4 = new Materia("Electivas", 9, c10, 0);
+    Materia Electivas1 = new Materia("Electivas", 6, c7, 0);*/
+    Materia Electivas1 = new Materia("Electivas", 3, c8, 0);
+    Materia Electivas2 = new Materia("Electivas", 6, c9, 0);
+    Materia Electivas3 = new Materia("Electivas", 21, c10, 0);
 
     cuatrimestresInformatica.add(c1);
     cuatrimestresInformatica.add(c2);
@@ -239,7 +237,8 @@ public class Tester {
 
     Set<Materia> materiasDesaprobadas = new HashSet<>();
 
-    materiasDesaprobadas.add(pi);
+    materiasDesaprobadas.add(algebra);
+    materiasDesaprobadas.addAll(c2.obtenerMaterias());
     materiasDesaprobadas.addAll(c3.obtenerMaterias());
     materiasDesaprobadas.addAll(c4.obtenerMaterias());
     materiasDesaprobadas.addAll(c5.obtenerMaterias());
@@ -249,12 +248,14 @@ public class Tester {
     materiasDesaprobadas.addAll(c9.obtenerMaterias());
     materiasDesaprobadas.addAll(c10.obtenerMaterias());
 
-    PlanAcademico planAcademico = new PlanAcademico(creditosDelPlan, cuatrimestresInformatica, materiasDesaprobadas);
+    PlanAcademico planAcademico = new PlanAcademico(24, cuatrimestresInformatica, materiasDesaprobadas);
     planAcademico.construirPlan();
-    PlanCorrelativo planCorrelativo = new PlanCorrelativo(creditosDelPlan, cuatrimestresInformatica, materiasDesaprobadas);
-    planCorrelativo.construirPlan();
 
     System.out.println("Plan Academico: " + planAcademico + "\n\n");
+
+    PlanCorrelativo planCorrelativo = new PlanCorrelativo(24, cuatrimestresInformatica, materiasDesaprobadas);
+    planCorrelativo.construirPlan();
+
     System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
 
   }

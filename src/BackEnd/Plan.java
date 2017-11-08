@@ -8,27 +8,16 @@ public class Plan {
 	private List<Cuatrimestre> cuatrimestres;
 	private List<Cuatrimestre> carrera;
 	private Set<Materia> materiasPorAprobar;
-	private int creditosTotales;
 
 	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
 		this.cuatrimestres = new ArrayList<>();
 		this.creditos = creditos;
 		this.carrera=new ArrayList<>(carrera);
 		this.materiasPorAprobar = materiasPorAprobar;
-		this.creditosTotales=0;
 	}
 
 	public List<Cuatrimestre> obtenerCuatrimestres(){
 		return cuatrimestres;
-	}
-	
-	public Set<Materia> obtenerMaterias(){
-		Set<Materia> materias = new HashSet<>();
-		for ( Cuatrimestre c : carrera) {
-			materias.addAll(c.obtenerMaterias());
-		}
-		return materias;
-		
 	}
 
 	public void construirPlan(TreeSet<Materia> set) throws NoTimeException {
@@ -47,13 +36,8 @@ public class Plan {
 			int cantidadDeCuatrimestres = cuatrimestres.size();
 			boolean flag = false;
 			Iterator<Cuatrimestre> i = cuatrimestres.iterator();
-			if (hayCreditosRequeridos(m)) {
-				while (!flag && i.hasNext()) {        // itero todos los cuatrimestres para ver donde agrego
-					flag = agregarMateria(m, i.next());
-				}
-			}
-			else{
-				System.out.println("--> no hay creditos requeridos");
+			while (!flag && i.hasNext()) {        // itero todos los cuatrimestres para ver donde agrego
+				flag = agregarMateria(m, i.next());
 			}
 			if (!flag) {
 				System.out.println(">>>>nuevo cuatri");
@@ -84,12 +68,14 @@ public class Plan {
 
 		System.out.println(c.obtenerNombre());
 
-		if (c.hayCreditos(m, creditos) && c.validaHorarios(m) && c.periodoDisponible(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m)) {
+		if (c.hayCreditos(m, creditos) && hayCreditosRequeridos(m,c) && c.periodoDisponible(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m) && c.validaHorarios(m)) {
 			System.out.println("-> agrega materia");
 			c.agregarMateria(m);
-			creditosTotales += m.obtenerCreditos();
 			return true;
 		}
+
+		if (!hayCreditosRequeridos(m, c))
+			System.out.println("-> no hay creditos requeridos");
 
 		if (!c.periodoDisponible(m))
 			System.out.println("-> no se dicta en este periodo");
@@ -127,7 +113,12 @@ public class Plan {
 
 	}
 
-	private boolean hayCreditosRequeridos(Materia m){
+	private boolean hayCreditosRequeridos(Materia m, Cuatrimestre c){
+
+		int creditosTotales = 0;
+		for (int i=0; i< cuatrimestres.indexOf(c); i++){
+			creditosTotales += cuatrimestres.get(i).obtenerCreditos();
+		}
 		return creditosTotales >= m.obtenerCreditosRequeridos();
 	}
 
