@@ -4,8 +4,8 @@ import java.util.*;
 
 public class PlanAcademico extends Plan {
 
-	public PlanAcademico (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
-		super(creditos, carrera, materiasPorAprobar);
+	public PlanAcademico (int creditosMax, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar,int creditosAprobados) {
+		super(creditosMax, carrera, materiasPorAprobar, creditosAprobados);
 	}
 
 	public void construirPlan () throws NoTimeException{

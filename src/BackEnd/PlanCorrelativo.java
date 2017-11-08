@@ -4,8 +4,8 @@ import java.util.*;
 
 public class PlanCorrelativo extends Plan {
 
-	public PlanCorrelativo (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
-		super(creditos, carrera, materiasPorAprobar);
+	public PlanCorrelativo (int creditosMax, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar, int creditosAprobados) {
+		super(creditosMax, carrera, materiasPorAprobar, creditosAprobados);
 	}
 
 	public void construirPlan() throws  NoTimeException{

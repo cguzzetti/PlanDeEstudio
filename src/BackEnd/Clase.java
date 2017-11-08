@@ -32,6 +32,7 @@ public class Clase {
 
     public boolean validaHorario(Clase clase){
 
+
         if(!dia.equals(clase.obtenerDia()))
             return true;
         else if (sede.equals(clase.obtenerSede()))

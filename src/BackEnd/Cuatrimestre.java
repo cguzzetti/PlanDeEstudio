@@ -26,9 +26,12 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 	}
 
 	public boolean validaHorarios (Materia m) {
+		System.out.println(">>cantidad de clases "+m.obtenerClases().size());
+		if(m.obtenerClases().size()==0)
+			return true;
 
-		for (Iterator<Materia> i = materias.iterator(); i.hasNext(); ) {
-			if (!i.next().validaHorarios(m)) {
+		for (Materia thisMateria:materias ) {
+			if (!thisMateria.validaHorarios(m)) {
 				return false;
 			}
 		}
@@ -96,7 +99,7 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(nombre).append("\n");
+		sb.append(nombre).append(" - creditos: ").append(creditos).append("\n");
 		for ( Materia m : materias) {
 			sb.append(m).append("\n");
 		}

@@ -4,14 +4,19 @@ import java.util.*;
 
 public class Plan {
 
-	private int creditos;
+	private int creditosMax;
+	private int creditosAprobados;
+	private int creditosPlan;
 	private List<Cuatrimestre> cuatrimestres;
 	private List<Cuatrimestre> carrera;
 	private Set<Materia> materiasPorAprobar;
 
-	public Plan (int creditos, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar) {
+
+	public Plan (int creditosMax, List<Cuatrimestre> carrera, Set<Materia> materiasPorAprobar,int creditosAprobados) {
 		this.cuatrimestres = new ArrayList<>();
-		this.creditos = creditos;
+		this.creditosMax = creditosMax;
+		this.creditosAprobados=creditosAprobados;
+		this.creditosPlan=0;
 		this.carrera=new ArrayList<>(carrera);
 		this.materiasPorAprobar = materiasPorAprobar;
 	}
@@ -68,9 +73,11 @@ public class Plan {
 
 		System.out.println(c.obtenerNombre());
 
-		if (c.hayCreditos(m, creditos) && hayCreditosRequeridos(m,c) && c.periodoDisponible(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m) && c.validaHorarios(m)) {
+		if (c.hayCreditos(m, creditosMax) && hayCreditosRequeridos(m,c) && c.periodoDisponible(m) && correlativasCursadas(m, c) && !c.hayAutoCorrelativas(m) && c.validaHorarios(m)) {
 			System.out.println("-> agrega materia");
 			c.agregarMateria(m);
+			creditosPlan+=m.obtenerCreditos();
+			System.out.println("creditos del plan: "+creditosPlan);
 			return true;
 		}
 
@@ -83,7 +90,7 @@ public class Plan {
 		if (c.hayAutoCorrelativas(m))
 			System.out.println("-> Hay autocorrelativas");
 		
-		if (!c.hayCreditos(m, creditos))
+		if (!c.hayCreditos(m, creditosMax))
 			System.out.println("-> No hay creditos");
 		
 		if (!c.validaHorarios(m))
@@ -115,11 +122,16 @@ public class Plan {
 
 	private boolean hayCreditosRequeridos(Materia m, Cuatrimestre c){
 
-		int creditosTotales = 0;
-		for (int i=0; i< cuatrimestres.indexOf(c); i++){
-			creditosTotales += cuatrimestres.get(i).obtenerCreditos();
+		int creditosAprobadosTotales=creditosAprobados;
+
+		for (int i=0; i<cuatrimestres.indexOf(c); i++) {
+			creditosAprobadosTotales+=cuatrimestres.get(i).obtenerCreditos();
 		}
-		return creditosTotales >= m.obtenerCreditosRequeridos();
+
+		System.out.println(">>>>>>creditos aprobados+plan(hasta el cuatri anterior):   "+creditosAprobadosTotales);
+
+		System.out.println(">>>>>>creditos requeridos: "+ m.obtenerCreditosRequeridos());
+		return creditosAprobadosTotales >= m.obtenerCreditosRequeridos();
 	}
 
 	@Override
