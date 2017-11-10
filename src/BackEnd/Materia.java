@@ -82,6 +82,10 @@ public class Materia {
     public void setearAutoCorrelativas(Set<Materia> materias) {
     		this.materiasAutoCorrelativas=materias;
     }
+
+    public void setearAutoCorrelativa(Materia m){
+        materiasAutoCorrelativas.add(m);
+    }
     
     public Set<Materia> obtenerAutoCorrelativas (){
     		return materiasAutoCorrelativas;
