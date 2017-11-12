@@ -2,7 +2,7 @@ package BackEnd;
 
 public class Clase {
     private DiaDeLaSemana dia;
-    private String sede;
+    private Sede sede;
     private int horaInicio;
     private int horaFin;
 
@@ -11,7 +11,7 @@ public class Clase {
         return dia;
     }
 
-    public String obtenerSede(){
+    public Sede obtenerSede(){
         return sede;
     }
 
@@ -23,7 +23,7 @@ public class Clase {
         return horaFin;
     }
 
-    public Clase(DiaDeLaSemana dia, String sede, int horaInicio, int horaFin){
+    public Clase(DiaDeLaSemana dia, Sede sede, int horaInicio, int horaFin){
         this.dia=dia;
         this.sede=sede;
         this.horaInicio=horaInicio;
