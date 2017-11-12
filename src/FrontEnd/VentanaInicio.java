@@ -58,7 +58,8 @@ public class VentanaInicio{
                     new Alert(Alert.AlertType.WARNING, "Por favor complete todos los campos.").show();
                 else {
                     estadoAplicacion.crearUsuario(usuario_campo.getText());
-                    EleccionDelPlan segundaVentana = new EleccionDelPlan(primaryStage, estadoAplicacion);
+                    ListadoDeMaterias segundaVentana = new ListadoDeMaterias(primaryStage, estadoAplicacion);
+                    segundaVentana.setStage();
                 }
             }
             private boolean fieldsEmpty(Label usuario_campo, PasswordField pwBox) {
