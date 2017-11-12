@@ -22,7 +22,7 @@ public class DatosMateria {
 
     public DatosMateria (Materia materia, EstadoDeAplicacion estado) {
         this.materia = materia;
-        checkbox = new CheckBox(estado.obtenerNombre(Materia));
+        checkbox = new CheckBox(estado.obtenerNombre(materia));
         puntaje = new ChoiceBox<Integer>(FXCollections.observableArrayList(1,2,3,4,5));
         comentario = new TextField();
         autoCorrelativa = null;

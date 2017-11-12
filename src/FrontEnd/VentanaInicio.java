@@ -58,13 +58,7 @@ public class VentanaInicio{
                     new Alert(Alert.AlertType.WARNING, "Por favor complete todos los campos.").show();
                 else {
                     estadoAplicacion.crearUsuario(usuario_campo.getText());
-
-                    //Usuario usuario = new Usuario(, /aca esta el metodo que le pasa carrera/ );
-                    //aca se deberia usar el metodo para agregar usuario al EstadoAplicacion
-
-                    //aca se invoca a la segunda ventana y se le pasa
-
-
+                    EleccionDelPlan segundaVentana = new EleccionDelPlan(primaryStage, estadoAplicacion);
                 }
             }
             private boolean fieldsEmpty(Label usuario_campo, PasswordField pwBox) {

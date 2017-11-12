@@ -103,7 +103,7 @@ public class ListadoDeMaterias {
                 datos.getCheckBox().setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        datos.getPuntaje().setValue(3);
+                        datos.obtenerPuntaje().setValue(3);
                         datos.getTextField().clear();
                         datos.getChoiceBox().setValue(NINGUNA);
                     }
@@ -119,11 +119,11 @@ public class ListadoDeMaterias {
                 botonReseñas.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        if(datos.obtenerMateria().HayReseñas()) {
+                        if(datos.obtenerMateria().hayReseñas()) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Comentarios");
                             alert.setHeaderText("");
-                            alert.setContentText(imprimeComentarios(m.obtenerReseñas()));
+                            alert.setContentText(imprimeComentarios(datos.obtenerMateria().obtenerReseñas()));
                             alert.showAndWait();
                         } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -167,6 +167,10 @@ public class ListadoDeMaterias {
             }
             return s.toString();
         }
+    }
+
+    public List<DatosMateria> obtenerDatos(){
+        return datosMaterias;
     }
 
     private void crearDatos(List<DatosMateria> datosMaterias) {

@@ -15,7 +15,7 @@ public class ImprimePlan {
     private Plan plan;
     private EstadoDeAplicacion estado;
 
-    public ImprimePlan(Stage stage,Plan plan, EstadoDeAplicacion estado) {
+    public ImprimePlan(Stage stage, Plan plan, EstadoDeAplicacion estado) {
         this.stage = stage;
         this.plan = plan;
         this.estado=estado;
@@ -44,11 +44,11 @@ public class ImprimePlan {
 
     public void setStage() {
         stage.setScene(scene());
-        stage.setTitle(plan());
+        //stage.setTitle(plan());
         stage.show();
     }
 
-    private String plan() {
+    /*private String plan() {
         estado.obtenerNombre(plan);
-    }
+    }*/
 }

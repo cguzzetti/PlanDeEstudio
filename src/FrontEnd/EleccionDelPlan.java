@@ -1,7 +1,6 @@
 package FrontEnd;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import BackEnd.EstadoDeAplicacion;
+import BackEnd.*;
 
 public class EleccionDelPlan {
     private Stage stage;
@@ -62,14 +61,13 @@ public class EleccionDelPlan {
                     if(!isEmpty()) {
                         try {
                             if(!fueraDeRango()) {
-                                PlanAcademico planAcademico = new PlanAcademico(Integer.parseInt(creditos.getText()),estado.obtenerCarrera(), materiasNoCursadas());
-                                planAcademico.construirPlan();
-                                ImprimePlan imprime = new ImprimePlan(stage,planAcademico);
+                                PlanAcademico plan = estado.crearPlanAcademico(Integer.parseInt(creditos.getText()), materiasNoCursadas());
+                                ImprimePlan imprime = new ImprimePlan(stage, plan, estado);
                                 imprime.setStage();
                             }
                         } catch(NumberFormatException ex) {
                             new Alert(Alert.AlertType.WARNING, "La cantidad maxima de creditos\ntiene que ser un numero.").show();
-                        } catch (NoTimeException ex) {}
+                        }
                     }
                 }
             });
@@ -80,14 +78,13 @@ public class EleccionDelPlan {
                     if(!isEmpty()) {
                         try {
                             if(!fueraDeRango()) {
-                                PlanCorrelativo planCorrelativo = new PlanCorrelativo(Integer.parseInt(creditos.getText()),estado.obtenerCarrera(), materiasNoCursadas());
-                                planCorrelativo.construirPlan();
-                                ImprimePlan imprime = new ImprimePlan(stage,planCorrelativo);
+                                PlanCorrelativo planCorrelativo = estado.crearPlanCorrelativo(Integer.parseInt(creditos.getText()), materiasNoCursadas());
+                                ImprimePlan imprime = new ImprimePlan(stage, planCorrelativo, estado);
                                 imprime.setStage();
                             }
                         } catch(NumberFormatException ex) {
                             new Alert(Alert.AlertType.WARNING, "La cantidad maxima de creditos\ntiene que ser un numero.").show();
-                        } catch (NoTimeException ex) {}
+                        }
                     }
                 }
             });
@@ -121,29 +118,24 @@ public class EleccionDelPlan {
         }
 
         private Set<Materia> materiasNoCursadas() {
-            Set<Materia> mnc = new HashSet<Materia>();
-            for(Materia m: estado.obtenerMaterias()) {
-                if(!estado.obtenerDatosMateria(m).getCheckBox().isSelected()) {
-                    autoCorrelativa(m,estado.obtenerDatosMateria(m).getChoiceBox());
-                    mnc.add(m);
+            Set<Materia> materiasNoCursadas = new HashSet<Materia>();
+            ListadoDeMaterias listado = new ListadoDeMaterias(stage, estado);
+            for(DatosMateria datos: listado.obtenerDatos()) {
+                if(!datos.getCheckBox().isSelected()) {
+                    autoCorrelativa(datos,datos.getChoiceBox(), listado.obtenerDatos());
+                    materiasNoCursadas.add(datos.obtenerMateria());
                 }
             }
-			/*for(Materia m: mnc) {
-				for(Materia materia: m.obtenerAutoCorrelativas()) {
-					System.out.println(materia.obtenerNombre());
-				}
-			}*/
-            return mnc;
+            return materiasNoCursadas;
         }
 
-        private void autoCorrelativa(Materia materia,ChoiceBox<String> choiceCorrelativas) { //las agrega pero es local, no se ve el cambio en la general
-            if(choiceCorrelativas.getValue().equals(NINGUNA)) {
+        private void autoCorrelativa(DatosMateria datos,ChoiceBox<String> eleccionCorrelativas, List<DatosMateria> datosMaterias) { //las agrega pero es local, no se ve el cambio en la general
+            if(eleccionCorrelativas.getValue().equals(NINGUNA)) {
                 return;
             }
-            for(Materia m: estado.obtenerMaterias()) {
-                if(m.obtenerNombre().equals(choiceCorrelativas.getValue())) {
-                    estado.obtenerDatosMateria(materia).addAutoCorrelativa(m);
-                    estado.obtenerDatosMateria(m).addAutoCorrelativa(materia);
+            for(DatosMateria d: datosMaterias) {
+                if(d.obtenerMateria().obtenerNombre().equals(eleccionCorrelativas.getValue())) {
+                    datos.setearAutoCorrelativa(d.obtenerMateria());
                     return;
                 }
             }

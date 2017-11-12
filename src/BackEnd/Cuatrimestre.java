@@ -51,11 +51,9 @@ public class Cuatrimestre implements Comparable<Cuatrimestre>{
 	}
 	
 	public boolean hayAutoCorrelativas (Materia materia) {
-		Set<Materia> autocorrelativas = materia.obtenerAutoCorrelativas();
-		for (Materia m : autocorrelativas ) {
-			if(materias.contains(m))
+		Materia autocorrelativa = materia.obtenerAutoCorrelativa();
+		if(materias.contains(autocorrelativa))
 				return true;
-		}
 		return false;
 	}
 

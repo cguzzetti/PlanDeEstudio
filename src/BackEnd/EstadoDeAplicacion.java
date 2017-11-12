@@ -98,31 +98,8 @@ public class EstadoDeAplicacion {
         materia2.setearAutoCorrelativa(materia1);
     }
 
-    //MARC
-
-    public void crearDatos() {
-        for(Materia materia: obtenerMaterias()) {
-            datos.put(materia, new DatosMateria(materia));
-        }
-    }
-
-    public Map<Materia,DatosMateria> obtenerDatos() {
-        return datos;
-    }
-
-    public DatosMateria obtenerDatosMateria(Materia materia) {
-        return datos.get(materia);
-    }
-
     public List<Cuatrimestre> obtenerCarrera() {
         return cuatrimestresInformatica;
     }
-
-
-
-
-
-
-
 
 }
