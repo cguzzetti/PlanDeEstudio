@@ -5,20 +5,10 @@ import java.util.*;
 public class Usuario {
 
 	private String nombreItba;
-    private List<Cuatrimestre> carrera;
 
-    public Usuario(String nombreItba, List<Cuatrimestre> carrera)
+    public Usuario(String nombreItba)
     {
         this.nombreItba=nombreItba;
-        this.carrera=carrera;
-    }
-
-    public void setearCarrera(List<Cuatrimestre> carrera) {
-        this.carrera = carrera;
-    }
-
-    public List<Cuatrimestre> obtenerCarrera() {
-        return carrera;
     }
 
     public String obtenerNombreItba() {
@@ -56,7 +46,6 @@ public class Usuario {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((nombreItba == null) ? 0 : nombreItba.hashCode());
-        result = prime * result + ((carrera == null) ? 0 : carrera.hashCode());
         return result;
     }
 

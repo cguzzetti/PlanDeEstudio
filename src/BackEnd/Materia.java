@@ -9,9 +9,10 @@ public class Materia {
     private Set<Clase> clases;
     private Set<Materia> correlativas;
     private int prioridadCorrelativas;
-    private Set<Materia> materiasAutoCorrelativas;
+    private Materia materiaAutoCorrelativa;
     private Periodo periodo;
     private int creditosRequeridos;
+    private Set<Reseña> reseñas;
 
 
     public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, Periodo periodo, int creditosRequeridos){
@@ -21,7 +22,6 @@ public class Materia {
         this.prioridadCorrelativas=0;
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
-        this.materiasAutoCorrelativas=new HashSet<>();
         this.periodo = periodo;
         this.creditosRequeridos=creditosRequeridos;
 
@@ -40,7 +40,6 @@ public class Materia {
         this.prioridadCorrelativas=0;
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
-        this.materiasAutoCorrelativas=new HashSet<>();
         this.periodo = null;
         this.creditosRequeridos=creditosRequeridos;
 
@@ -59,7 +58,6 @@ public class Materia {
         this.prioridadCorrelativas=0;
         this.correlativas = new HashSet<>();
         this.clases = new HashSet<>();
-        this.materiasAutoCorrelativas=new HashSet<>();
         this.periodo = null;
         this.creditosRequeridos=0;
 
@@ -79,16 +77,14 @@ public class Materia {
         clases.add(clase);
     }
     
-    public void setearAutoCorrelativas(Set<Materia> materias) {
-    		this.materiasAutoCorrelativas=materias;
-    }
+
 
     public void setearAutoCorrelativa(Materia m){
-        materiasAutoCorrelativas.add(m);
+        materiaAutoCorrelativa=m;
     }
     
-    public Set<Materia> obtenerAutoCorrelativas (){
-    		return materiasAutoCorrelativas;
+    public Materia obtenerAutoCorrelativa (){
+    		return materiaAutoCorrelativa;
     }
 
     public Cuatrimestre obtenerCuatrimestre(){
@@ -148,6 +144,17 @@ public class Materia {
 
     public boolean sonCorrelativas (Materia m){
         return correlativas.contains(m);
+    }
+
+
+    public boolean hayReseñas()
+    {
+        return !reseñas.isEmpty();
+    }
+
+    public Set<Reseña> obtenerReseñas()
+    {
+        return reseñas;
     }
 
     @Override

@@ -2,12 +2,14 @@ package BackEnd;
 
 import java.util.*;
 
-public class Tester {
-  public static void main(String[] args) throws NoTimeException
+public class DatosInformatica {
+
+
+  public static List<Cuatrimestre> inicializarData() throws NoTimeException
   {
     List<Cuatrimestre> cuatrimestresInformatica=new ArrayList<>();
 
-    int creditosTotalesInformatica=243;
+    //int creditosTotalesInformatica=243;
 
     Cuatrimestre c1=new Cuatrimestre("1C1",Periodo.PRIMERO);//ARRANCAMOS EN PRIMERO PERO ES INDISTINTO
     Cuatrimestre c2=new Cuatrimestre("1C2",Periodo.SEGUNDO);
@@ -202,7 +204,12 @@ public class Tester {
     cuatrimestresInformatica.add(c8);
     cuatrimestresInformatica.add(c9);
     cuatrimestresInformatica.add(c10);
-    
+
+
+    return cuatrimestresInformatica;
+
+
+    /*
     Set<Materia> autocorrelativasFisicaIII = new HashSet<>();
     autocorrelativasFisicaIII.add(fisica2);
     fisica2.setearAutoCorrelativa(fisica3);
@@ -242,6 +249,9 @@ public class Tester {
     planCorrelativo.construirPlan();
 
     System.out.println("Plan Correlativo: " + planCorrelativo + "\n\n");
+
+
+    */
 
   }
 }

@@ -2,16 +2,16 @@ package BackEnd;
 
 import java.util.*;
 
-public class Comentario {
+public class Reseña {
 
     private Usuario autor;
     private String comentario;
     private int puntaje;
 
-    public Comentario (Usuario u, String c, int p){
-        autor=u;
-        comentario=c;
-        puntaje=p;
+    public Reseña (Usuario autor, String comentario, int puntaje){
+        this.autor=autor;
+        this.comentario=comentario;
+        this.puntaje=puntaje;
     }
 
     public int obtenerPuntaje(){
@@ -22,7 +22,7 @@ public class Comentario {
         return comentario;
     }
 
-    public Usuario obtenerUsuario(){
+    public Usuario obtenerAutor(){
         return autor;
     }
 
@@ -46,10 +46,10 @@ public class Comentario {
     public boolean equals(Object o){
         if (this == o)
             return true;
-        if (!(o instanceof Comentario))
+        if (!(o instanceof Reseña))
             return false;
 
-        Comentario aux = (Comentario)o;
+        Reseña aux = (Reseña)o;
         return aux.autor.equals(autor) && aux.puntaje==puntaje && aux.comentario.equals(comentario);
     }
 
