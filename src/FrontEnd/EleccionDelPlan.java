@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 import BackEnd.*;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 public class EleccionDelPlan {
     private Stage stage;
     private EstadoDeAplicacion estado;
@@ -121,8 +123,9 @@ public class EleccionDelPlan {
             Set<Materia> materiasNoCursadas = new HashSet<Materia>();
             ListadoDeMaterias listado = new ListadoDeMaterias(stage, estado);
             for(DatosMateria datos: listado.obtenerDatos()) {
+                System.out.println("Materia: " + datos.obtenerMateria().obtenerNombre() + " fue seleccionada? " + datos.getCheckBox().isSelected());
                 if(!datos.getCheckBox().isSelected()) {
-                    autoCorrelativa(datos,datos.getChoiceBox(), listado.obtenerDatos());
+                    //autoCorrelativa(datos,datos.getChoiceBox(), listado.obtenerDatos());
                     materiasNoCursadas.add(datos.obtenerMateria());
                 }
             }

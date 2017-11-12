@@ -127,7 +127,7 @@ public class ListadoDeMaterias {
                             alert.showAndWait();
                         } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Reeñas");
+                            alert.setTitle("Reseñas");
                             alert.setHeaderText("");
                             alert.setContentText("No hay reseñas para esta materia");
                             alert.showAndWait();
@@ -139,7 +139,7 @@ public class ListadoDeMaterias {
                 setAlignment(Pos.CENTER);
             }
 
-            Button next = new Button("Next");
+            Button next = new Button("Obtener plan");
             add(next,2,(++gridfila + 1));
 
             next.setOnAction(new EventHandler<ActionEvent>() {
