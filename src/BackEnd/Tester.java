@@ -22,8 +22,6 @@ public class Tester {
     Cuatrimestre c9=new Cuatrimestre("5C1",Periodo.PRIMERO);
     Cuatrimestre c10=new Cuatrimestre("5C2",Periodo.SEGUNDO);
 
-
-    //todas las materias son en madero menos dos que indican que son en PP. Hay qeu fijarse bien por clase igual.
     Materia algebra=new Materia("Álgebra",9,c1);
       algebra.agregarClase(new Clase(DiaDeLaSemana.MARTES,MADERO,9,13));
       algebra.agregarClase(new Clase(DiaDeLaSemana.JUEVES,MADERO,9,14));
