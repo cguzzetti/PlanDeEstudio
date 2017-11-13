@@ -123,7 +123,7 @@ public class EleccionDelPlan {
             for(DatosMateria datos: listado.obtenerDatos()) {
                 System.out.println("Materia: " + datos.obtenerMateria().obtenerNombre() + " fue seleccionada? " + datos.getCheckBox().isSelected());
                 if(!datos.getCheckBox().isSelected()) {
-                    //autoCorrelativa(datos,datos.getChoiceBox(), listado.obtenerDatos());
+                    autoCorrelativa(datos,datos.getChoiceBox(), listado.obtenerDatos());
                     materiasNoCursadas.add(datos.obtenerMateria());
                 }
             }
