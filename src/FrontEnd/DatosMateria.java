@@ -1,14 +1,9 @@
 package FrontEnd;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import javafx.collections.FXCollections;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import BackEnd.EstadoDeAplicacion;
 import BackEnd.Materia;
 
 public class DatosMateria {

@@ -12,7 +12,7 @@ public class Materia {
     private Materia materiaAutoCorrelativa;
     private Periodo periodo;
     private int creditosRequeridos;
-    private Set<Reseña> reseñas;
+    private Set<Reseña> reseñas = new HashSet<>();
 
 
     public Materia(String nombre, int creditos, Cuatrimestre cuatrimestre, Periodo periodo, int creditosRequeridos){
@@ -24,7 +24,6 @@ public class Materia {
         this.clases = new HashSet<>();
         this.periodo = periodo;
         this.creditosRequeridos=creditosRequeridos;
-
 
         try {
             cuatrimestre.agregarMateria(this);

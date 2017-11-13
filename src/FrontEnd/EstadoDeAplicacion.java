@@ -1,14 +1,14 @@
-package BackEnd;
+package FrontEnd;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import BackEnd.*;
 
 public class EstadoDeAplicacion {
 
     private List<Cuatrimestre> cuatrimestresInformatica;
     private static final int CREDITOS_TOTALES_INFORMATICA=243;
     private Usuario usuario;
+    private List<DatosMateria> datosMaterias;
 
     public EstadoDeAplicacion()
     {
@@ -33,6 +33,13 @@ public class EstadoDeAplicacion {
         return materias;
     }
 
+    public void setearDatosMaterias(List<DatosMateria> datosMaterias){
+        this.datosMaterias=datosMaterias;
+    }
+
+    public List<DatosMateria> obtenerDatosMaterias(){
+        return datosMaterias;
+    }
 
     public void crearUsuario(String nombre)
     {

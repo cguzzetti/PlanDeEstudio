@@ -20,8 +20,6 @@ import javafx.stage.Stage;
 
 import BackEnd.*;
 
-import javax.xml.bind.SchemaOutputResolver;
-
 public class EleccionDelPlan {
     private Stage stage;
     private EstadoDeAplicacion estado;

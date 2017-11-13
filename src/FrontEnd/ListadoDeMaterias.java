@@ -31,8 +31,12 @@ public class ListadoDeMaterias {
     public ListadoDeMaterias(Stage stage,EstadoDeAplicacion estado) {
         this.stage = stage;
         this.estado = estado;
-        this.datosMaterias = new ArrayList<DatosMateria>();
-        crearDatos(datosMaterias);
+        if(estado.obtenerDatosMaterias() == null) {
+            this.datosMaterias = new ArrayList<DatosMateria>();
+            crearDatos(datosMaterias);
+        } else {
+            this.datosMaterias = estado.obtenerDatosMaterias();
+        }
     }
 
     public void setStage() {
@@ -152,6 +156,7 @@ public class ListadoDeMaterias {
                     Optional<ButtonType> result = alert.showAndWait();
                     if(result.isPresent()) {
                         if(result.get() == ButtonType.OK) {
+                            estado.setearDatosMaterias(datosMaterias);
                             EleccionDelPlan plan = new EleccionDelPlan(stage,estado);
                             plan.setStage();
                         }

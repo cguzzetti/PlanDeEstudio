@@ -2,7 +2,6 @@ package FrontEnd;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import BackEnd.EstadoDeAplicacion;
 
 public class Main extends Application {
 
